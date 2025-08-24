@@ -1,5 +1,5 @@
 import './App.css'
-import Signup from './components/signup/Signup'
+import Signup from './components/pages/Signup'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 
