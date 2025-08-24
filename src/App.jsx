@@ -1,14 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Signup from './components/signup/Signup'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+
+
+const study_pal_router = createBrowserRouter(
+  [
+    {path: "/", element: <></>},
+    {path: "/signup", element: <Signup/>},
+
+  ]
+)
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <Signup/>
+    <RouterProvider router={study_pal_router}></RouterProvider>
   )
 }
 
