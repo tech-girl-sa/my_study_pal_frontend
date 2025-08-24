@@ -1,0 +1,21 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #2a93d5, #3b9ab7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  
+  .loginLink {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  
+  .loginLink a {
+    color: #2a93d5;
+    text-decoration: none;
+  }
