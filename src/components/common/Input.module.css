@@ -12,3 +12,15 @@
     border: 1px solid #ccc;
     border-radius: 5px;
   }
+
+  .customInput.error {
+    border-color: #e63946;   /* red border for error */
+    background-color: #fff5f5; /* light red background */
+  }
+  
+  .errorMessage {
+    color: #e63946;
+    font-size: 0.875rem; /* slightly smaller text */
+    margin-top: 5px;
+    display: block;
+  }
