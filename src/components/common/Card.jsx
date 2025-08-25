@@ -1,7 +1,7 @@
 import classes from './Card.module.css'
 
 function Card({children}){
-    return <div class={classes.container}>
+    return <div className={classes.container}>
         {children}
     </div>
 
