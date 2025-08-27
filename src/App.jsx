@@ -1,6 +1,10 @@
 import './App.css'
 import Signup from './components/pages/Signup'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 
 
 const study_pal_router = createBrowserRouter(
@@ -11,11 +15,14 @@ const study_pal_router = createBrowserRouter(
   ]
 )
 
+const queryClient = new QueryClient()
 
 function App() {
 
   return (
-    <RouterProvider router={study_pal_router}></RouterProvider>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={study_pal_router}></RouterProvider>
+    </QueryClientProvider>
   )
 }
 
