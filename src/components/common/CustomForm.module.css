@@ -1,0 +1,9 @@
+.formError {
+    margin-top: 15px;
+    padding: 10px 14px;
+    border-left: 4px solid #dc3545;
+    background-color: #fff5f5;
+    color: #b91c1c;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
