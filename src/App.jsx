@@ -6,10 +6,13 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import { action as logoutAction } from './utils/authentication'
-import Error404 from './components/pages/errors/Error404'
-import Error500 from './components/pages/errors/Error500'
 import RootLayout from './components/pages/RootLayout'
 import ErrorPage from './components/pages/errors/ErrorPage'
+import OnboardingLayout from './components/pages/onboarding/OnboardingLayout'
+import OnboardingStep1 from './components/pages/onboarding/OnboardingStep1'
+import OnboardingStep2 from './components/pages/onboarding/OnboardingStep2'
+import OnboardingStep3 from './components/pages/onboarding/OnboardingStep3'
+import OnboardingStep4 from './components/pages/onboarding/OnboardingStep4'
 
 
 const study_pal_router = createBrowserRouter(
@@ -21,6 +24,15 @@ const study_pal_router = createBrowserRouter(
         {path: "signup", element: <Signup/>},
         {path: "logout", action:logoutAction},
         {path: "login", element:<p>login page</p>},
+        {path: "onboarding", 
+          element:<OnboardingLayout/>,
+          children:[
+            {path: "step1", element:<OnboardingStep1/>},
+            {path: "step2", element:<OnboardingStep2/>},
+            {path: "step3", element:<OnboardingStep3/>},
+            {path: "step4", element:<OnboardingStep4/>},
+          ]
+        },
         
       ]},
     
