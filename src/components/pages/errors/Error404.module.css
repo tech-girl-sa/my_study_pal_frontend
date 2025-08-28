@@ -1,0 +1,143 @@
+.body{
+    min-height: calc(100vh - 64px);
+    background: linear-gradient(to right, #b2e2f4, #d8f2ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    color: #1c2b38;
+  }
+  
+  .notfoundWrapper {
+    width: 100%;
+    max-width: 760px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  
+  .illustration svg {
+    font-size: 64px;
+    color: #2a93d5;
+    filter: drop-shadow(0 6px 16px rgba(42,147,213,0.25));
+    margin-bottom: 6px;
+  }
+  
+  .code {
+    font-size: 64px;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: 2px;
+  }
+  
+  .title {
+    font-size: 1.6rem;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .subtitle {
+    margin: 0;
+    color: #4c5b6a;
+    text-align: center;
+  }
+  
+  .searchBar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  
+  .searchBar input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid #d6dee6;
+    border-radius: 14px;
+    font-size: 1rem;
+    outline: none;
+    background: #fff;
+  }
+  
+  .searchBar input:focus {
+    border-color: #2a93d5;
+    box-shadow: 0 0 0 3px rgba(42,147,213,0.15);
+  }
+  
+  .searchBar button {
+    width: 52px;
+    height: 52px;
+    border: none;
+    border-radius: 50%;
+    background: #2a93d5;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .25s ease;
+  }
+  
+  .searchBar button:hover {
+    background: #237bb0;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 6px;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  }
+  
+  .primary {
+    background: #1c2b38;
+    color: #fff;
+  }
+  
+  .primary:hover {
+    background: #111a25;
+  }
+  
+  .outline {
+    border: 1px solid #cfd8e3;
+    color: #1c2b38;
+    background: #fff;
+  }
+  
+  .outline:hover {
+    border-color: #b7c4d2;
+    background: #f7fbff;
+  }
+  
+  .ghost {
+    background: transparent;
+    color: #2a93d5;
+  }
+  
+  .ghost:hover {
+    background: rgba(42,147,213,0.08);
+  }
+  
+  @media (max-width: 600px) {
+    .code { font-size: 48px; }
+    .illustration svg { font-size: 52px; }
+    .searchBar button { width: 48px; height: 48px; }
+  }
