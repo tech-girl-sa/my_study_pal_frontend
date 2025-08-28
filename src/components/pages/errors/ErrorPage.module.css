@@ -1,0 +1,9 @@
+.errorBody{
+    min-height: calc(100vh - 64px);
+    background: linear-gradient(to right, #b2e2f4, #d8f2ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    color: #1c2b38;
+  }
