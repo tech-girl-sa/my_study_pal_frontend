@@ -1,3 +1,4 @@
+import {renameKeys, invertKeys} from './helperFunctions'
 
 export async function createNewInstance(url, data, instance_name) {
     const response = await fetch(url, {
@@ -17,18 +18,6 @@ export async function createNewInstance(url, data, instance_name) {
     
     const instance = await response.json();
     return instance;
-}
-
-function renameKeys(object, keyMappings){
-    return Object.fromEntries(
-        Object.entries(object).map(([key, value]) => [keyMappings[key] || key, value])
-      );
-}
-
-function invertKeys(object){
-    return Object.fromEntries(
-        Object.entries(object).map(([key, value]) => [value, key])
-      );
 }
 
 export async function createNewRegistration(registrationData) {
