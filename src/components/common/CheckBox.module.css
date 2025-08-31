@@ -1,0 +1,17 @@
+ 
+  .optionGroup {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  
+  .optionGroup label {
+    margin-top: unset;
+    font-weight: normal;
+    color: #444;
+  }
+  
+  .optionGroup input {
+    width: 5%;
+    transform: scale(1.5);
+  }
