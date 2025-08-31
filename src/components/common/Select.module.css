@@ -1,0 +1,22 @@
+
+.customSelect {
+    width: 105%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+
+  .selectLabel {
+    display: block;
+    margin-top: 20px;
+    font-weight: 600;
+    color: #333;
+  }
+  .errorMessage {
+    color: #e63946;
+    font-size: 0.875rem; /* slightly smaller text */
+    margin-top: 5px;
+    display: block;
+  }

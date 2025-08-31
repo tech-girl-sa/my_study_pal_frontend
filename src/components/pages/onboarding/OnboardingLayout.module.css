@@ -60,40 +60,6 @@
   font-size: 0.95rem;
 }
 
-.onboardingForm label {
-  display: block;
-  margin-top: 20px;
-  font-weight: 600;
-  color: #333;
-}
-
-.onboardingForm input,
-.onboardingForm select {
-  width: 95%;
-  padding: 12px;
-  margin-top: 8px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.onboardingForm button {
-  margin-top: 30px;
-  width: 100%;
-  padding: 14px;
-  background-color: #1c2b38;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.onboardingForm button:hover {
-  background-color: #111a25;
-}
 
 .formArea {
   display: flex;
