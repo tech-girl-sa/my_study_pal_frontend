@@ -9,21 +9,22 @@ import BlackSubmitButton from '../../common/BlackSubmitButton';
 import CustomForm from '../../common/CustomForm';
 
 const initialValues={
-  nickname: '',
-  age: '',
+  subjects: '',
+  goals: '',
 }
 const validationSchema=Yup.object({
-  nickname: Yup.string()
+  subjects: Yup.string()
     .max(150, 'Must be 150 characters or less')
     .required('This field is required'),
-    age: Yup.number().integer('Please enter a valid number.')
-    .required('Please enter a number.'),
+    goals: Yup.string()
+    .max(150, 'Must be 150 characters or less')
+    .required('This field is required'),
 
 })
 
 export default function OnboardingStep3(){
     function handleSubmit(values, { setSubmitting, setErrors, setStatus }){
-    
+    console.log(values)
       }
 
     return (
@@ -36,16 +37,14 @@ export default function OnboardingStep3(){
     <CustomForm className={classes.onboardingForm} >
         <h2>📖 What are you learning?</h2>
         <p className={classes.subtext}>List your main subjects and what you want help with.</p>
-      
-      <Input 
-      label="💬 What should we call you?" type='text'
-      id="nickname" name="nickname" placeholder="e.g. Sarah" ></Input>
+ 
       
       <Input label="📝 Subjects you're studying" type="text"
       id="subjects" name="subjects" placeholder="e.g. Math, History, Physics"></Input>
       
-    <label for="goals">🎯 What are your learning goals?</label>
-    <textarea id="goals" name="goals" placeholder="e.g. Prepare for exams, understand lectures better, etc." rows="4" required></textarea>
+    <Input textarea id="goals" name="goals" 
+    placeholder="e.g. Prepare for exams, understand lectures better, etc." 
+    rows="4" label='🎯 What are your learning goals?'></Input>
 
       <BlackSubmitButton type="submit">Next</BlackSubmitButton>
     </CustomForm>

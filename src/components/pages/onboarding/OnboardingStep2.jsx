@@ -7,23 +7,27 @@ import { useMutation } from '@tanstack/react-query';
 import { createNewRegistration } from '../../../utils/http';
 import BlackSubmitButton from '../../common/BlackSubmitButton';
 import CustomForm from '../../common/CustomForm';
+import Select from '../../common/Select';
 
 const initialValues={
-  nickname: '',
-  age: '',
+  academicLevel: '',
+  institution: '',
+  semester:'',
 }
 const validationSchema=Yup.object({
-  nickname: Yup.string()
+  academicLevel: Yup.string()
     .max(150, 'Must be 150 characters or less')
     .required('This field is required'),
-    age: Yup.number().integer('Please enter a valid number.')
-    .required('Please enter a number.'),
+    institution: Yup.string()
+    .max(150, 'Must be 150 characters or less'),
+    semester: Yup.string()
+    .max(150, 'Must be 150 characters or less'),
 
 })
 
 export default function OnboardingStep2(){
     function handleSubmit(values, { setSubmitting, setErrors, setStatus }){
-    
+    console.log(values);
       }
 
     return (
@@ -38,8 +42,8 @@ export default function OnboardingStep2(){
         <p className={classes.subtext}>So we can help you stay organized.</p>
         
         
-        <label for="academic-level">📚 What’s your current academic level?</label>
-      <select id="academic-level" name="academic-level" required>
+      <Select id="academicLevel" name="academicLevel" 
+      label='📚 What’s your current academic level?'>
         <option value="">-- Choose one --</option>
         <option value="middle">Middle School</option>
         <option value="high">High School</option>
@@ -47,7 +51,8 @@ export default function OnboardingStep2(){
         <option value="vocational">Vocational / Formation</option>
         <option value="self">Self-learning</option>
         <option value="other">Other</option>
-      </select>
+
+      </Select>
       
       <Input label="🏫 Institution name (optional)" type="text"
       id="institution" name="institution" placeholder="e.g. National University"></Input>
@@ -55,7 +60,7 @@ export default function OnboardingStep2(){
       <Input label="📅 Current year or semester (if applicable)" type="text"
       id="semester" name="semester" placeholder="e.g. 2nd year, Semester 1"></Input>
 
-      <BlackSubmitButton type="submit">Next</BlackSubmitButton>
+      <BlackSubmitButton >Next</BlackSubmitButton>
     </CustomForm>
     </Formik>
 </>
