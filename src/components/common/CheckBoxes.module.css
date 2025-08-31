@@ -1,0 +1,13 @@
+.checkboxGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 30px;
+  }
+
+  .errorMessage {
+    color: #e63946;
+    font-size: 0.875rem; /* slightly smaller text */
+    margin-top: 5px;
+    display: block;
+  }

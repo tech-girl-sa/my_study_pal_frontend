@@ -7,23 +7,22 @@ import { useMutation } from '@tanstack/react-query';
 import { createNewRegistration } from '../../../utils/http';
 import BlackSubmitButton from '../../common/BlackSubmitButton';
 import CustomForm from '../../common/CustomForm';
+import CheckBox from '../../common/CheckBox';
+import CheckBoxes from '../../common/CheckBoxes';
 
 const initialValues={
-  nickname: '',
-  age: '',
+  supportType: [],
 }
 const validationSchema=Yup.object({
-  nickname: Yup.string()
-    .max(150, 'Must be 150 characters or less')
+    supportType: Yup.array().of(Yup.string().max(150, 'Must be 150 characters or less'))
+    .min(1, 'Pick at least one option')
     .required('This field is required'),
-    age: Yup.number().integer('Please enter a valid number.')
-    .required('Please enter a number.'),
-
 })
 
 export default function OnboardingStep4(){
-    function handleSubmit(values, { setSubmitting, setErrors, setStatus }){
     
+    function handleSubmit(values, { setSubmitting, setErrors, setStatus }){
+        console.log(values);
       }
 
     return (
@@ -38,35 +37,17 @@ export default function OnboardingStep4(){
         <p className={classes.subtext}>Choose how you'd like to use Study Pal.</p>
         
         <label>💡 What kind of help are you looking for?</label>
-        <div className={classes.checkboxGroup }>
-          <div className={classes.optionGroup }>
-          <input type="checkbox" name="support-type" value="summarize"/>
-          <label> Summarize my courses </label>
-        </div>
+        <CheckBoxes name="supportType">
+        
+        <CheckBox  name="supportType" value="summarize" label='Summarize my courses '/>
+        <CheckBox name="supportType" value="translate" label='Translate material '/>
+        <CheckBox  name="supportType" value="explain" label='Explain difficult concepts'/>
+        <CheckBox  name="supportType" value="chat" label='Ask questions via chat'/>
+        <CheckBox name="supportType" value="quiz" label='Generate quizzes/tests'/>
 
-        <div className={classes.optionGroup }>
-          <input type="checkbox" name="support-type" value="translate"/>
-          <label> Translate material </label>
-        </div>
+        </CheckBoxes>
 
-        <div className={classes.optionGroup }>
-          <input type="checkbox" name="support-type" value="explain"/>
-          <label> Explain difficult concepts </label>
-        </div>
-
-        <div className={classes.optionGroup }>
-          <input type="checkbox" name="support-type" value="chat"/>
-          <label> Ask questions via chat </label>
-        </div>
-
-        <div className={classes.optionGroup }>
-          <input type="checkbox" name="support-type" value="quiz"/>
-          <label> Generate quizzes/tests </label>
-        </div>
-        </div>
-      
-
-      <BlackSubmitButton type="submit">Next</BlackSubmitButton>
+      <BlackSubmitButton >Next</BlackSubmitButton>
     </CustomForm>
     </Formik>
 
