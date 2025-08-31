@@ -17,9 +17,12 @@
   align-items: center;
   gap: 10px;
 }
-
+a {
+  all: unset;         /* removes ALL browser default styles */
+  cursor: pointer;    /* re-add pointer since all: unset removes it */
+}
 .step {
-  background-color: #ccc;
+  background-color: #2a93d5;
   color: white;
   width: 30px;
   height: 30px;
@@ -31,13 +34,14 @@
   font-size: 0.9rem;
 }
 
-.stepActive {
-  background-color: #2a93d5;
-}
 
 .bar {
   height: 4px;
   width: 40px;
+  background-color: #2a93d5;
+}
+
+.stepActive ~ * {
   background-color: #ccc;
 }
 
