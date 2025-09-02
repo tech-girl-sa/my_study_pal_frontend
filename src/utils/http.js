@@ -15,7 +15,10 @@ export async function createNewInstance(url, data, instanceName, method='POST', 
         });
         
     if (!response.ok){
-        const error = new Error(`An error occured while creatind new ${instanceName}`);
+        const errorMsg = instanceName === "loginCred" ? 'An error occured while logging in': 
+        `An error occured while creating new ${instanceName}`
+    
+        const error = new Error(errorMsg);
         error.code = response.status;
         error.info = await response.json();
         throw error;
@@ -48,12 +51,23 @@ export async function instanceMappingWrapper(url, instanceName, keyMappings,
 }
 }
 
-export async function createNewRegistration(registrationData) {
+export async function createNewRegistration(loginData) {
     const keyMappings = {
         password: 'password1',
         confirmPassword: 'password2',
     }
     const url = `http://localhost:8000/api/registration/`
+    const instanceName = 'loginCred'
+    const loginCred = await instanceMappingWrapper(url, instanceName, keyMappings, loginData,
+       "POST" ,false
+    )
+    return loginCred
+}
+
+export async function sendLoginRequest(registrationData) {
+    const keyMappings = {
+    }
+    const url = `http://localhost:8000/api/login/`
     const instanceName = 'registration'
     const registration = await instanceMappingWrapper(url, instanceName, keyMappings, registrationData,
        "POST" ,false

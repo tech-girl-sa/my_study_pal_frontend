@@ -5,7 +5,7 @@ import Card from '../common/Card';
 import Input from '../common/Input';
 import BlackSubmitButton from '../common/BlackSubmitButton';
 import CustomForm from '../common/CustomForm';
-import { useSetRegistration } from '../../utils/hooks';
+import { useAuthenticate} from '../../utils/hooks';
 
 
 const initialValues={
@@ -32,10 +32,11 @@ const validationSchema=Yup.object({
 
 
 function Signup(){
-  const [handleSubmit] = useSetRegistration()
+  const [handleSubmit] = useAuthenticate()
     
   
   return(
+    <div className={classes.signupPage}>
         <Card>
     <h1>Create Your Study Pal Account</h1>
     <Formik
@@ -57,6 +58,7 @@ function Signup(){
     </CustomForm>
     </Formik>
     </Card>
+    </div>
     )
 };
 

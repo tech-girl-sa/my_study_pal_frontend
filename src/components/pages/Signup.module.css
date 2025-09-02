@@ -7,7 +7,13 @@ body {
     margin: 0;
   }
   
-  
+  .signupPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+  }  
   .loginLink {
     margin-top: 20px;
     text-align: center;
