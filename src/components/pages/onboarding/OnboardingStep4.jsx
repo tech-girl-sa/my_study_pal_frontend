@@ -1,14 +1,13 @@
 import classes from './OnboardingLayout.module.css'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import Input from '../../common/Input';
-import { useNavigate } from "react-router-dom";
-import { useMutation } from '@tanstack/react-query';
-import { createNewRegistration } from '../../../utils/http';
 import BlackSubmitButton from '../../common/BlackSubmitButton';
 import CustomForm from '../../common/CustomForm';
 import CheckBox from '../../common/CheckBox';
 import CheckBoxes from '../../common/CheckBoxes';
+import { useSetUserInfo } from '../../../utils/hooks';
+
+
 
 const initialValues={
   supportType: [],
@@ -21,9 +20,7 @@ const validationSchema=Yup.object({
 
 export default function OnboardingStep4(){
     
-    function handleSubmit(values, { setSubmitting, setErrors, setStatus }){
-        console.log(values);
-      }
+   const [handleSubmit] = useSetUserInfo('/')
 
     return (
   
@@ -39,11 +36,11 @@ export default function OnboardingStep4(){
         <label>💡 What kind of help are you looking for?</label>
         <CheckBoxes name="supportType">
         
-        <CheckBox  name="supportType" value="summarize" label='Summarize my courses '/>
+        <CheckBox  name="supportType" value="summarize_course" label='Summarize my courses '/>
         <CheckBox name="supportType" value="translate" label='Translate material '/>
         <CheckBox  name="supportType" value="explain" label='Explain difficult concepts'/>
-        <CheckBox  name="supportType" value="chat" label='Ask questions via chat'/>
-        <CheckBox name="supportType" value="quiz" label='Generate quizzes/tests'/>
+        <CheckBox  name="supportType" value="ask" label='Ask questions via chat'/>
+        <CheckBox name="supportType" value="generate_quizzes" label='Generate quizzes/tests'/>
 
         </CheckBoxes>
 

@@ -2,11 +2,10 @@ import classes from './OnboardingLayout.module.css'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Input from '../../common/Input';
-import { useNavigate } from "react-router-dom";
-import { useMutation } from '@tanstack/react-query';
-import { createNewRegistration } from '../../../utils/http';
 import BlackSubmitButton from '../../common/BlackSubmitButton';
 import CustomForm from '../../common/CustomForm';
+import { useSetUserInfo } from '../../../utils/hooks';
+
 
 const initialValues={
   subjects: '',
@@ -14,18 +13,16 @@ const initialValues={
 }
 const validationSchema=Yup.object({
   subjects: Yup.string()
-    .max(150, 'Must be 150 characters or less')
+    .max(300, 'Must be 300 characters or less')
     .required('This field is required'),
     goals: Yup.string()
-    .max(150, 'Must be 150 characters or less')
+    .max(600, 'Must be 600 characters or less')
     .required('This field is required'),
 
 })
 
 export default function OnboardingStep3(){
-    function handleSubmit(values, { setSubmitting, setErrors, setStatus }){
-    console.log(values)
-      }
+    const [handleSubmit] = useSetUserInfo('/onboarding/step4')
 
     return (
   
