@@ -1,16 +1,21 @@
+import { getAuthToken } from './authentication';
 import {renameKeys, invertKeys} from './helperFunctions'
 
-export async function createNewInstance(url, data, instance_name) {
+export async function createNewInstance(url, data, instanceName, method='POST', authentication=true) {
+    const headers = {}
+    if (authentication){
+        headers['Authorization']= `Token ${getAuthToken()}`;
+        console.log(getAuthToken())
+    }
+    headers['Content-Type']= 'application/json'
     const response = await fetch(url, {
-        method:'POST',
+        method: method,
         body: JSON.stringify(data),
-        headers:{
-            'Content-Type': 'application/json'
-        },
+        headers: headers,
         });
         
     if (!response.ok){
-        const error = new Error(`An error occured while creatind new ${instance_name}`);
+        const error = new Error(`An error occured while creatind new ${instanceName}`);
         error.code = response.status;
         error.info = await response.json();
         throw error;
@@ -20,19 +25,19 @@ export async function createNewInstance(url, data, instance_name) {
     return instance;
 }
 
-export async function createNewRegistration(registrationData) {
-    const keyMappings = {
-        password: 'password1',
-        confirmPassword: 'password2',
-    }
-    const mappedData = renameKeys(registrationData, keyMappings)
+export async function instanceMappingWrapper(url, instanceName, keyMappings, 
+    data, method='POST', authentication=true){
+
+    const mappedData = renameKeys(data, keyMappings)
     try{
-    const registration = await createNewInstance(
-            `http://localhost:8000/api/registration/`, 
+    const instance = await createNewInstance(
+            url,
             mappedData, 
-            'registration'
+            instanceName,
+            method,
+            authentication
         )
-        return registration;
+        return instance;
     } catch(error){
         if(error.code === 400){
             const inverted_mapper = invertKeys(keyMappings);
@@ -41,5 +46,31 @@ export async function createNewRegistration(registrationData) {
     }
     throw error;
 }
-    
+}
+
+export async function createNewRegistration(registrationData) {
+    const keyMappings = {
+        password: 'password1',
+        confirmPassword: 'password2',
+    }
+    const url = `http://localhost:8000/api/registration/`
+    const instanceName = 'registration'
+    const registration = await instanceMappingWrapper(url, instanceName, keyMappings, registrationData,
+       "POST" ,false
+    )
+    return registration
+}
+
+
+export async function setUserInfo(userInfoData) {
+    const keyMappings = {
+        academicLevel: 'academic_level',
+        institution: 'institution_name',
+        semester: 'current_year',
+        supportType: 'required_help'
+    }
+    const instanceName = 'userInfo'
+    const url = `http://localhost:8000/api/user_info/`
+    const userInfo = await instanceMappingWrapper(url, instanceName, keyMappings, userInfoData, "PUT")
+    return userInfo
 }

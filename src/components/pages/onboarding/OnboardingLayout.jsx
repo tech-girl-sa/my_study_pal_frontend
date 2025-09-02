@@ -11,26 +11,23 @@ export default function OnboardingLayout() {
         document.body.classList.remove(classes.onboardingPage);
       };
     }, []);
+
+    const assignClass = ({ isActive }) =>
+      isActive ? `${classes.step} ${classes.stepActive}` : classes.step
+   
+
   
     return (
       <>
         <div className={classes.progressWrapper}>
           <div className={classes.progressBar}>
-              <NavLink  className={({ isActive }) =>
-     isActive ? `${classes.step} ${classes.stepActive}` : classes.step
-  } to="step1">1</NavLink>
+              <NavLink  className={assignClass} to="step1">1</NavLink>
             <div className={classes.bar}></div>
-            <NavLink  className={({ isActive }) =>
-     isActive ? `${classes.step} ${classes.stepActive}` : classes.step
-  } to="step2">2</NavLink>
+            <NavLink  className={assignClass} to="step2">2</NavLink>
             <div className={classes.bar}></div>
-            <NavLink  className={({ isActive }) =>
-     isActive ? `${classes.step} ${classes.stepActive}` : classes.step
-  } to="step3">3</NavLink>
+            <NavLink  className={assignClass} to="step3">3</NavLink>
             <div className={classes.bar}></div>
-            <NavLink  className={({ isActive }) =>
-     isActive ? `${classes.step} ${classes.stepActive}` : classes.step
-  } to="step4">4</NavLink>
+            <NavLink  className={assignClass} to="step4">4</NavLink>
           </div>
         </div>
   
