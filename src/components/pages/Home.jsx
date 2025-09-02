@@ -19,7 +19,6 @@ export default function Home(){
         <>
     <HomeNavBar></HomeNavBar>
     <HeroSection></HeroSection>
-
     <Features></Features>
         <Footer></Footer>
    

@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { createNewRegistration, setUserInfo } from "./http";
+import { createNewRegistration, sendLoginRequest, setUserInfo } from "./http";
 import { useMutation } from "@tanstack/react-query";
 import { setAuthToken } from "./authentication";
+import Login from "../components/pages/Login";
 
 
-export function useSetRegistration(){
-    const navigate = useNavigate();
+export function useAuthenticate(mode="register"){
+  const navigate = useNavigate();
   const {mutate, isPending, isError, error} = useMutation({
-    mutationFn: createNewRegistration
+    mutationFn: mode == "login" ? sendLoginRequest: createNewRegistration
   })
 
 
@@ -16,7 +17,8 @@ export function useSetRegistration(){
       onSuccess: (data) => {
         setAuthToken(data.key)
         setSubmitting(false);
-        navigate("/onboarding/step1")
+        const url= mode == "login" ? "/": "/onboarding/step1"
+        navigate(url)
       },
       onError: async (err) => {
         if (err?.code === 400 && err?.info) {
@@ -31,10 +33,10 @@ export function useSetRegistration(){
     });
   }
   return [
+    handleSubmit,
     isPending,
     isError,
     error,
-    handleSubmit,
   ]
 }
 
