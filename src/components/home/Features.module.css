@@ -1,0 +1,22 @@
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 20px;
+    background-color: #ffffff;
+}
+
+.featureItem {
+    text-align: center;
+    width: 30%;
+}
+
+.featureItem h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.featureItem p {
+    font-size: 1rem;
+    color: #555;
+}
