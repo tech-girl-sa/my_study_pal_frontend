@@ -13,6 +13,7 @@ import OnboardingStep1 from './components/pages/onboarding/OnboardingStep1'
 import OnboardingStep2 from './components/pages/onboarding/OnboardingStep2'
 import OnboardingStep3 from './components/pages/onboarding/OnboardingStep3'
 import OnboardingStep4 from './components/pages/onboarding/OnboardingStep4'
+import Home from './components/pages/Home'
 
 
 const study_pal_router = createBrowserRouter(
@@ -21,6 +22,7 @@ const study_pal_router = createBrowserRouter(
       element: <RootLayout/>,
       errorElement: <ErrorPage/>,
       children:[
+        {path: "home", element: <Home/>},
         {path: "signup", element: <Signup/>},
         {path: "logout", action:logoutAction},
         {path: "login", element:<p>login page</p>},
