@@ -7,13 +7,14 @@ import { useMutation } from '@tanstack/react-query';
 import { createNewRegistration } from '../../../utils/http';
 import BlackSubmitButton from '../../common/BlackSubmitButton';
 import CustomForm from '../../common/CustomForm';
+import { useSetUserInfo } from '../../../utils/hooks';
 
 const initialValues={
-  nickname: '',
+  country: '',
   age: '',
 }
 const validationSchema=Yup.object({
-  nickname: Yup.string()
+  country: Yup.string()
     .max(150, 'Must be 150 characters or less')
     .required('This field is required'),
     age: Yup.number().integer('Please enter a valid number.')
@@ -22,9 +23,7 @@ const validationSchema=Yup.object({
 })
 
 export default function OnboardingStep1(){
-    function handleSubmit(values, { setSubmitting, setErrors, setStatus }){
-    
-      }
+  const [handleSubmit] = useSetUserInfo('/onboarding/step2')
 
     return (
   
@@ -37,8 +36,8 @@ export default function OnboardingStep1(){
         <h2>👋 Hi there! Let’s get started</h2>
         <p className={classes.subtext}>We’d love to know a little more about you.</p>
       <Input 
-      label="💬 What should we call you?" type='text'
-      id="nickname" name="nickname" placeholder="e.g. Sarah" ></Input>
+      label="🌍 Where do you come from ?" type='text'
+      id="country" name="country" placeholder="e.g. Germany" ></Input>
       
       <Input label="🎂 How old are you?" type="text"
       id="age" name="age" placeholder="e.g. 18"></Input>

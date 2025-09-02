@@ -3,12 +3,9 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Card from '../common/Card';
 import Input from '../common/Input';
-import { useNavigate } from "react-router-dom";
-import { useMutation } from '@tanstack/react-query';
-import { createNewRegistration } from '../../utils/http';
 import BlackSubmitButton from '../common/BlackSubmitButton';
 import CustomForm from '../common/CustomForm';
-import { setAuthToken } from '../../utils/authentication';
+import { useSetRegistration } from '../../utils/hooks';
 
 
 const initialValues={
@@ -35,31 +32,7 @@ const validationSchema=Yup.object({
 
 
 function Signup(){
-  const navigate = useNavigate();
-  const {mutate, isPending, isError, error} = useMutation({
-    mutationFn: createNewRegistration
-  })
-
-
-  function handleSubmit(values, { setSubmitting, setErrors, setStatus }){
-    mutate(values, {
-      onSuccess: (data) => {
-        setAuthToken(data.key)
-        setSubmitting(false);
-        navigate("/")
-      },
-      onError: async (err) => {
-        if (err?.code === 400 && err?.info) {
-          const fieldErrors = Object.fromEntries(
-            Object.entries(err.info).map(([key, value]) => [key, value[0]])
-          );
-          setErrors(fieldErrors); 
-        }else{setStatus(err.message)
-        }
-        setSubmitting(false);
-      },
-    });
-  }
+  const [handleSubmit] = useSetRegistration()
     
   
   return(
