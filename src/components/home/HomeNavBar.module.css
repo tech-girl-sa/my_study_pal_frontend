@@ -1,0 +1,28 @@
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:  0px 20px;
+    background-color: #1c2b38; /* Solid dark blue color */
+    color: white;
+}
+
+.navbar .logo img{
+    height: 3.5rem;
+}
+
+.navLinks {
+    list-style: none;
+    display: flex;
+}
+
+.navLinks li {
+    margin-left: 20px;
+}
+
+.navLinks a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
