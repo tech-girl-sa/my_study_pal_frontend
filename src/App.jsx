@@ -15,6 +15,7 @@ import OnboardingStep3 from './components/pages/onboarding/OnboardingStep3'
 import OnboardingStep4 from './components/pages/onboarding/OnboardingStep4'
 import Home from './components/pages/Home'
 import Login from './components/pages/Login'
+import DashboardLayout from './components/pages/dashboard/DashboardLayout'
 
 
 const study_pal_router = createBrowserRouter(
@@ -34,6 +35,15 @@ const study_pal_router = createBrowserRouter(
             {path: "step2", element:<OnboardingStep2/>},
             {path: "step3", element:<OnboardingStep3/>},
             {path: "step4", element:<OnboardingStep4/>},
+          ]
+        },
+        {path: "dashboard", 
+          element:<DashboardLayout/>,
+          children:[
+            {path: "home", element:<div></div>},
+            {path: "subjects", element:<div></div>},
+            {path: "courses", element:<div></div>},
+            {path: "documents", element:<div></div>},
           ]
         },
         
