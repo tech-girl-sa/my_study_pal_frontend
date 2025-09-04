@@ -1,0 +1,22 @@
+ .navbar {
+    background-color: #1c2b38;
+    padding: 5px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .navbarIcons {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .navbarIcons .icon {
+    font-size: 1.4rem;
+    color: #2a93d5;
+    cursor: pointer;
+  }
+  .navbar .logo img{
+    height: 3.5rem;
+}

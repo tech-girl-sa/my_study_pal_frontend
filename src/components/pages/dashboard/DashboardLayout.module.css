@@ -1,0 +1,57 @@
+.dashboardPage {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f6f9fc;
+    color: #1c2b38;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dashboardLayout {
+    display: flex;
+    width: 100%;
+  }
+  
+
+  /* Header */
+  .dashboardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .dashboardHeader h2 {
+    font-size: 1.6rem;
+  }
+  
+  .userControls span {
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  
+  /* Content Section */
+  .contentSection {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    font-size: 1rem;
+  }
+  
+ 
+  
+ 
+  
+  /* Main Content */
+  .mainContent {
+    flex: 1;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to right, #b2e2f4, #d8f2ff);
+  }
+  
+
+

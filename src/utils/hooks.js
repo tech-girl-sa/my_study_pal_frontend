@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { createNewRegistration, sendLoginRequest, setUserInfo } from "./http";
 import { useMutation } from "@tanstack/react-query";
 import { setAuthToken } from "./authentication";
-import Login from "../components/pages/Login";
 
 
 export function useAuthenticate(mode="register"){
