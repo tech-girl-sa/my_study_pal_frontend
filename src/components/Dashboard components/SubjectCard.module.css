@@ -1,0 +1,119 @@
+
+  .contentCard {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex: 1 1 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .contentCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2a93d5;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 8px;
+  }
+  
+  .cardHeader .subject-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1c2b38;
+  }
+  
+  .cardHeader .courseCount {
+    background-color: #2a93d5;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .cardBody {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  .cardFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .cardFooter a {
+    font-size: 0.9rem;
+    color: #2a93d5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  .cardFooter a:hover {
+    color: #237bb0;
+  }
+  
+  .cardFooter .linkGroup {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .cardFooter.linkGroup a {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #2a93d5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  .cardFooter .linkGroup a:hover {
+    color: #237bb0;
+  }
+  
+  .cardFooter .linkGroup a i {
+    font-size: 1.1rem;
+    margin-right: 8px;
+  }
+  
+  .cardFooter .linkGroup .documents,
+  .cardFooter .linkGroup .quizzes {
+    background-color: #f1faff;
+    border-radius: 10px;
+    padding: 5px 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .cardFooter .linkGroup .documents i,
+  .cardFooter .linkGroup .quizzes i {
+    font-size: 1.2rem;
+    color: #2a93d5;
+  }
+  
+  .cardFooter .linkGroup .documents:hover,
+  .cardFooter .linkGroup .quizzes:hover {
+    background-color: #e2f1fb;
+  }
+  

@@ -1,0 +1,11 @@
+
+.chatForm {
+    display: flex;
+    align-items: center;
+    border: 2px solid #2a93d5;
+    border-radius: 999px;
+    padding: 6px 10px;
+    background: linear-gradient(to right, #d6f0ff, #f1faff);
+    margin-bottom: 20px;
+  }
+
