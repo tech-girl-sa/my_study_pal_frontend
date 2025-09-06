@@ -5,67 +5,12 @@
   justify-content: space-between;
 }
 
-  /* courses section */
-  .recent-courses-section {
-    margin-top: 30px;
-  }
-  
-  .courses-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: transparent;
-    box-shadow: none;
-    border-radius: 8px;
-  }
-  
-  .courses-table th, .courses-table td {
-    padding: 12px 15px;
-    text-align: left;
-  }
-  
-  .courses-table th {
-    background-color: transparent;
-    color: #1c2b38;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  }
-  
-  .courses-table td {
-    background-color: transparent;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  
-  .courses-table td a {
-    color: #2a93d5;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  
-  .courses-table td a:hover {
-    text-decoration: underline;
-  }
-  .courses-table td a.course-title {
-    color: #1e7e99;  /* A slightly darker shade than #2a93d5, but not too dark */
-    font-weight: 700;
-  }
-  
-  .view-course-link {
-    color: #237bb0;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  
-  .view-course-link:hover {
-    text-decoration: underline;
-  }
 
-  .action-buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-  }
-  
+.courseTitle a {
+  color: #1e7e99  !important; 
+  font-weight: 700  !important;
+}
+
 
   
   
