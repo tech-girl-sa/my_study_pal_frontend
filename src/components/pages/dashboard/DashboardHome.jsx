@@ -2,6 +2,7 @@ import classes from './DashboardHome.module.css'
 import ChatWidgetSection from "../../Dashboard components/ChatWidgetSection";
 import SubjectCard from "../../Dashboard components/SubjectCard";
 import Section from "../../common/Section";
+import Table from '../../common/Table';
 
 const subjects = [
   {
@@ -26,6 +27,38 @@ const subjects = [
     "quizzes_count": 4
   }
 ]
+const courses = [
+  {
+    id: 1,
+    title: "Advanced Calculus",
+    subject: "Mathematics",
+    link: "#",
+  },
+  {
+    id: 2,
+    title: "Organic Chemistry",
+    subject: "Science",
+    link: "#",
+  },
+  {
+    id: 3,
+    title: "Shakespearean Literature",
+    subject: "Literature",
+    link: "#",
+  },
+  {
+    id: 4,
+    title: "Data Structures and Algorithms",
+    subject: "Computer Science",
+    link: "#",
+  },
+  {
+    id: 5,
+    title: "Modern Art History",
+    subject: "Arts",
+    link: "#",
+  },
+];
 
 
 
@@ -41,51 +74,13 @@ export default function DashboardHome(){
   
   <Section title="Recent Courses" icon="copy" >
  
-  <div class="table-container">
-    <table class="courses-table">
-      <thead>
-        <tr>
-          <th>Course Title</th>
-          <th>Subject</th>
-          <th>View Course</th>
-        </tr>
-      </thead>
-      <tbody>
- 
-        <tr>
-          <td><a href="#" class="course-title">Advanced Calculus</a></td>
-          <td>Mathematics</td>
+ <Table headers={["Course Title", "Subject", "View Course"]}>
+        {courses.map(course=> (<tr id={course.id}>
+          <td  className={classes.courseTitle}><a href="#">{course.title}</a></td>
+          <td>{course.subject}</td>
           <td><a href="#" class="view-course-link">View Course</a></td>
-        </tr>
-
-    
-        <tr>
-          <td><a href="#" class="course-title">Organic Chemistry</a></td>
-          <td>Science</td>
-          <td><a href="#" class="view-course-link">View Course</a></td>
-        </tr>
-
-  
-        <tr>
-          <td><a href="#" class="course-title">Shakespearean Literature</a></td>
-          <td>Literature</td>
-          <td><a href="#" class="view-course-link">View Course</a></td>
-        </tr>
-
-
-        <tr>
-          <td><a href="#" class="course-title">Data Structures and Algorithms</a></td>
-          <td>Computer Science</td>
-          <td><a href="#" class="view-course-link">View Course</a></td>
-        </tr>
-        <tr>
-          <td><a href="#" class="course-title">Modern Art History</a></td>
-          <td>Arts</td>
-          <td><a href="#" class="view-course-link">View Course</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+        </tr>))}
+   </Table>
   </Section>
   </>
 }
