@@ -1,0 +1,12 @@
+
+.pageHeader h1 {
+    font-size: 2rem;
+    color: #1c2b38;
+    margin-bottom: 5px;
+  }
+  
+  .pageHeader .subtitle {
+    font-size: 1rem;
+    color: #617182;
+    margin-bottom: 25px;
+  }

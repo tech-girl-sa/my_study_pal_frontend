@@ -17,6 +17,8 @@ import Home from './components/pages/Home'
 import Login from './components/pages/Login'
 import DashboardLayout from './components/pages/dashboard/DashboardLayout'
 import DashboardHome from './components/pages/dashboard/DashboardHome'
+import Subjects from './components/pages/dashboard/Subjects'
+import Courses from './components/pages/dashboard/Courses'
 
 
 const study_pal_router = createBrowserRouter(
@@ -41,9 +43,9 @@ const study_pal_router = createBrowserRouter(
         {path: "dashboard", 
           element:<DashboardLayout/>,
           children:[
-            {path: "home", element:<DashboardHome/>},
-            {path: "subjects", element:<div></div>},
-            {path: "courses", element:<div></div>},
+            {index:true, element:<DashboardHome/>},
+            {path: "subjects", element:<Subjects/>},
+            {path: "courses", element:<Courses/>},
             {path: "documents", element:<div></div>},
           ]
         },
