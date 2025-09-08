@@ -13,11 +13,16 @@ const tags = [
 ];
 
 export default function Subjects(){
-  const filterChoices=[{key:"",label:"All"},{key:"most-courses",label:"Most Courses"},{key:"most-recent",label:"Recently Added"}]
+  const filterChoices=[
+    [{key:"",label:"All"},
+      {key:"most-courses",label:"Most Courses"},
+      {key:"most-recent",label:"Recently Added"}]
+  ]
     return <>
     <div className={classes.Page}>
     <PageHeader title="All Subjects" subtitle="Explore all the subjects in your study space."/>
-   <Filters tags={tags} placeholder="Search subjects..." filterChoices={filterChoices}></Filters>
+   <Filters tags={tags} placeholder="Search subjects..." 
+   filterChoices={filterChoices} buttonText="Create New Subject"/>
    </div>
   <SubjectsGrid/>
  <Pagination pagesNbr={3}/>

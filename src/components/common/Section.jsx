@@ -1,13 +1,16 @@
 
 import classes from './Section.module.css';
-import { FaBook, FaCopy } from "react-icons/fa";
+import { FaBook, FaCopy, FaFolderOpen, FaUpload } from "react-icons/fa";
 const icons = {
     book: FaBook,
     copy: FaCopy,
+    folder: FaFolderOpen,
+    upload: FaUpload,
   };
 
 export default function Section({children, icon, title}){
     const Icon = icons[icon];
+    console.log(Icon)
     
     return  <section className={classes.sectionBlock} >
      <div className={classes.sectionHeader} >
