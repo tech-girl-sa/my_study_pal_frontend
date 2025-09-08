@@ -4,7 +4,7 @@ import classes from './Filters.module.css'
 import Tags from "./Tags";
 
 
-export default function Filters({tags,placeholder,filterChoices}){
+export default function Filters({tags,placeholder,filterChoices,buttonText}){
 
     return  <>
     <div className={classes.controls}>
@@ -12,10 +12,10 @@ export default function Filters({tags,placeholder,filterChoices}){
         <input type="text" placeholder={placeholder}/>
         <FaSearch className={classes.icon}/>
       </div>
-  
+   {filterChoices.map(filter=>
       <select className={classes.filterDropdown}>
-        {filterChoices.map(choice=><option value={choice.key}>{choice.label}</option>)}
-      </select>
+        {filter.map(choice=><option value={choice.key}>{choice.label}</option>)}
+      </select>)}
   
       <select className={classes.sortDropdown}>
         <option value="">Sort by</option>
@@ -24,10 +24,10 @@ export default function Filters({tags,placeholder,filterChoices}){
         <option value="az">A-Z</option>
         <option value="za">Z-A</option>
       </select>
-  
+      {buttonText?
       <RoundBlueButton>
-      <FaPlus /> Create New Subject
-      </RoundBlueButton>
+      <FaPlus /> {buttonText}
+      </RoundBlueButton>: ""}
     </div>
 
       <Tags tags={tags}/>

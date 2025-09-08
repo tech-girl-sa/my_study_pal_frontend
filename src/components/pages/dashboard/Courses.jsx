@@ -38,12 +38,13 @@ const courses = [
 
   
 export default function Courses(){
-const filterChoices=[{key:"",label:"All Subjects"},{key:"math",label:"Math"},{key:"science",label:"Science"}]
+const filterChoices=[[{key:"",label:"All Subjects"},{key:"math",label:"Math"},{key:"science",label:"Science"}]]
     
     return <>
     <div className={classes.Page}>
     <PageHeader title="All Courses" subtitle="Explore all the courses in your study space."/>
-   <Filters tags={tags} placeholder="Search courses..." filterChoices={filterChoices}></Filters>
+   <Filters tags={tags} placeholder="Search courses..." 
+   filterChoices={filterChoices} buttonText="Create New Course" />
    </div>
     <Table headers={["Course Title", "Subject", "Documents", "Quizzes", "Created at" ,"View Course"]}>
           {courses.map(course=> (<tr id={course.id}>
