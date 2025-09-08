@@ -1,0 +1,71 @@
+.subjectCard {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 25px 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease;
+  }
+  
+  .subjectCard:hover {
+    transform: translateY(-3px);
+  }
+  
+  .subjectName {
+    font-size: 1.3rem;
+    color: #1c2b38;
+    margin-bottom: 8px;
+  }
+  
+  .subjectDescription {
+    font-size: 0.95rem;
+    color: #546377;
+    margin-bottom: 15px;
+  }
+  
+  .subjectMeta {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: #6f8295;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+  
+  .subjectMeta span {
+    display: inline-block;
+  }
+  
+  .subjectAction {
+    align-self: flex-end;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2a93d5;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .icon {
+    font-size: 1rem;
+  }
+  
+  
+  /* Tags inside cards */
+  .subjectTags {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  
+  .subjectTags .tag {
+    background-color: #e0f4fd;
+    color: #2a93d5;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-weight: 500;
+  }

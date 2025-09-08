@@ -1,0 +1,25 @@
+.tagFilters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .tagFilters button {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background-color: #eaf6fb;
+    color: #2a93d5;
+    font-weight: 500;
+    border: 1px solid #b3d7ec;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.2s ease;
+  }
+  
+  .tagFilters button:hover {
+    background-color: #d2edf9;
+  }
+  
+
+
+
