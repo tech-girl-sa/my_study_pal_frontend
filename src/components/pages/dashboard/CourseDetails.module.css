@@ -1,0 +1,59 @@
+.coursePage {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(to right, #b2e2f4, #d8f2ff);
+    font-family: 'Segoe UI', sans-serif;
+    color: #1c2b38;
+  }
+  
+
+  
+  /* Main Content */
+  .courseMain {
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .mainContent{
+  flex: unset;
+      padding: unset;
+  }
+  
+  .courseHeader {
+    display: flex;
+    padding: 40px 20px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .courseHeader h2 {
+    font-size: 1.8rem;
+  }
+  .courseInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+  }
+  
+  .courseTitle {
+    font-size: 1.6rem;
+    color: #1c2b38;
+    margin: 0;
+  }
+  
+  .currentSection {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .courseActions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+ 
+
+  

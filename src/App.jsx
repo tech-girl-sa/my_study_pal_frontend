@@ -20,6 +20,7 @@ import DashboardHome from './components/pages/dashboard/DashboardHome'
 import Subjects from './components/pages/dashboard/Subjects'
 import Courses from './components/pages/dashboard/Courses'
 import Documents from './components/pages/dashboard/Documents'
+import CourseDetails from './components/pages/dashboard/CourseDetails'
 
 
 const study_pal_router = createBrowserRouter(
@@ -47,6 +48,7 @@ const study_pal_router = createBrowserRouter(
             {index:true, element:<DashboardHome/>},
             {path: "subjects", element:<Subjects/>},
             {path: "courses", element:<Courses/>},
+            {path: "courses/:courseId", element:<CourseDetails/>},
             {path: "documents", element:<Documents/>},
           ]
         },
