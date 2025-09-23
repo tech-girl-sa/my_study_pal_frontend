@@ -1,3 +1,4 @@
+import FileUpload from "../../common/FileUpload.jsx";
 import PageHeader from "../../common/PageHeader";
 import Pagination from "../../common/Pagination";
 import Section from "../../common/Section";
@@ -38,13 +39,7 @@ export default function Documents(){
     <PageHeader title="Documents" subtitle="Explore all the documents in your study space."></PageHeader>
     <Section title="Upload Document" icon="upload">
 
-        <div className={classes.uploadSection}>
-            <div className={classes.uploadWidget}>
-            <FaCloudUploadAlt className={classes.cloudIcon}/>
-            <p>Drag and drop files here or click to upload</p>
-            <input type="file" id="document-input" hidden />
-        </div>
-        </div>
+        <FileUpload></FileUpload>
     </Section>
     
     

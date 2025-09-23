@@ -1,0 +1,44 @@
+.uploadWidget {
+    border: 4px dashed #2a93d5;
+    background-color: transparent;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    color: #ccc;
+  }
+  
+  .uploadWidget:hover {
+    background-color: #ffffff05;
+    border-color: #40b0ff;
+  }
+  
+  .cloudIcon {
+    font-size: 2.5rem;
+    color: #2a93d5;
+    margin-bottom: 0.75rem;
+  }
+  
+  .uploadWidget p {
+    font-size: 1rem;
+    margin: 0;
+    color: #aaa;
+  }
+  
+  
+  .uploadWidget p {
+    margin: 0;
+    color: #666;
+    font-size: 1rem;
+  }
+  .uploadWidgetActive {
+    border-color: #40b0ff;
+    background-color: #e6f7ff; /* light blue highlight */
+    color: #2a93d5;
+  }
+
+  .uploadWidget p.rejected{
+    color: #d9534f;
+  }

@@ -48,7 +48,7 @@ const filterChoices=[[{key:"",label:"All Subjects"},{key:"math",label:"Math"},{k
    </div>
     <Table headers={["Course Title", "Subject", "Documents", "Quizzes", "Created at" ,"View Course"]}>
           {courses.map(course=> (<tr id={course.id}>
-            <td  className={classes.courseTitle}><a href="#">{course.title}</a></td>
+            <td  className={classes.courseTitle}><a href={course.url} >{course.title}</a></td>
             <td>{course.subject}</td>
             <td>{course.documents}</td>
             <td>{course.quizzes}</td>

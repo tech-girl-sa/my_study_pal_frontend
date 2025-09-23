@@ -5,7 +5,6 @@ export async function createNewInstance(url, data, instanceName, method='POST', 
     const headers = {}
     if (authentication){
         headers['Authorization']= `Token ${getAuthToken()}`;
-        console.log(getAuthToken())
     }
     headers['Content-Type']= 'application/json'
     const response = await fetch(url, {
@@ -87,4 +86,28 @@ export async function setUserInfo(userInfoData) {
     const url = `http://localhost:8000/api/user_info/`
     const userInfo = await instanceMappingWrapper(url, instanceName, keyMappings, userInfoData, "PUT")
     return userInfo
+}
+
+export async function uploadDocument(file) {
+    const headers = {}
+    
+    headers['Authorization']= `Token ${getAuthToken()}`;
+    
+    const formData = new FormData();
+    formData.append("file", file);
+    const response = await fetch(`http://localhost:8000/api/documents/`, {
+        method: "POST",
+        body: formData,
+        headers: headers,
+        });
+        
+    if (!response.ok){
+        const error = new Error('An error occured while uploading the document');
+        error.code = response.status;
+        error.info = await response.json();
+        throw error;
+    }
+    
+    const instance = await response.json();
+    return instance;
 }
