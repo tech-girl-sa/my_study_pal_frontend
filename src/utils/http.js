@@ -111,3 +111,45 @@ export async function uploadDocument(file) {
     const instance = await response.json();
     return instance;
 }
+
+
+export async function setUserMessage(usermessageData, sectionId) {
+    const keyMappings = {
+        message: 'content',
+    }
+    const instanceName = 'userMessage'
+    const url = `http://localhost:8000/api/sections/${sectionId}/messages`
+    const userMessage = await instanceMappingWrapper(url, instanceName, keyMappings, usermessageData, "POST")
+    return userMessage
+}
+
+
+export async function getData(url, instanceName, authentication=true) {
+    const headers = {}
+    if (authentication){
+        headers['Authorization']= `Token ${getAuthToken()}`;
+    }
+    const response = await fetch(url, {
+        method: "GET",
+        headers: headers,
+        });
+        
+    if (!response.ok){
+        const errorMsg =`An error occured while getting${instanceName}`
+    
+        const error = new Error(errorMsg);
+        error.code = response.status;
+        error.info = await response.json();
+        throw error;
+    }
+    
+    const data = await response.json();
+    return data;
+}
+
+export async function getMessages(sectionId) {
+    const instanceName = 'Messages'
+    const url = `http://localhost:8000/api/sections/${sectionId}/messages`
+    const userMessage = await getData(url, "messages")
+    return userMessage
+}

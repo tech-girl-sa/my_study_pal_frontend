@@ -21,7 +21,7 @@
     background: #f2f2f2;
     padding: 12px 16px;
     border-radius: 16px;
-    max-width: 70%;
+    max-width: 600px;
   }
   
   .chatMessage.user {
@@ -109,4 +109,22 @@
   
   .chatActions button:hover {
     background-color: #c6ebff;
+  }
+  .chatMessage table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+  }
+  
+  .chatMessage th,
+  .chatMessage td {
+    border: 1px solid #e3e6ea;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  
+  .chatMessage th {
+    background: #f5f7fb;
+    font-weight: 600;
   }

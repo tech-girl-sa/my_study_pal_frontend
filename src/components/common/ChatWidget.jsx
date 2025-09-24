@@ -4,6 +4,7 @@ import classes from './ChatWidget.module.css'
 import CustomForm from './CustomForm'
 import { Formik } from "formik";
 import * as Yup from 'yup';
+import { useSetUserMessage } from "../../utils/hooks";
 
 
 
@@ -19,9 +20,7 @@ const validationSchema=Yup.object({
 
 
 export default function ChatWidget(){
-    function handleSubmit({values}){
-        console.log(values)
-    }
+  const [handleSubmit] = useSetUserMessage()
 
     return <Formik
            initialValues={initialValues}

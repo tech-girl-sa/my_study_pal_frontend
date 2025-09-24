@@ -48,7 +48,7 @@ const study_pal_router = createBrowserRouter(
             {index:true, element:<DashboardHome/>},
             {path: "subjects", element:<Subjects/>},
             {path: "courses", element:<Courses/>},
-            {path: "courses/:courseId", element:<CourseDetails/>},
+            {path: "courses/:courseId/:sectionId", element:<CourseDetails/>},
             {path: "documents", element:<Documents/>},
           ]
         },
