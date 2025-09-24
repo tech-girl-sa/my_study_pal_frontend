@@ -52,6 +52,10 @@
     flex-direction: column;
     background: linear-gradient(to right, #b2e2f4, #d8f2ff);
   }
+
+  .noPadding{
+    padding: 0;
+  }
   
 
 

@@ -153,3 +153,10 @@ export async function getMessages(sectionId) {
     const userMessage = await getData(url, "messages")
     return userMessage
 }
+
+export async function getCourse(courseId) {
+    const instanceName = 'course'
+    const url = `http://localhost:8000/api/courses/${courseId}/`
+    const course = await getData(url, "course")
+    return course
+}

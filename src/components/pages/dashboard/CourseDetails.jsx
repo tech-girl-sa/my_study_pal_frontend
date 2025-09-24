@@ -1,3 +1,4 @@
+import { useGetCourse } from "../../../utils/hooks";
 import RoundBlueButton from "../../common/RoundBlueButton";
 import ChatSection from "../../Dashboard components/ChatSection";
 import SectionSideBar from "../../Dashboard components/SectionSideBar";
@@ -7,13 +8,15 @@ import { FaPen, FaUpload, FaBoxArchive, FaPlus } from "react-icons/fa6";
 
 
 export default function CourseDetails(){
+  const {data:course, isLoading, error} = useGetCourse()
+  
     return <div className={classes.coursePage}>
 
     <div className={classes.courseMain}>
     
       <div className={classes.courseHeader}>
          <div className={classes.courseInfo}>
-          <h2 className={classes.courseTitle}>Calculus Basics</h2>
+          <h2 className={classes.courseTitle}>{course?.title}</h2>
           <span className={classes.currentSection}>Section: <strong>Introduction</strong></span>
         </div>
         <div className={classes.courseActions}>
@@ -28,7 +31,7 @@ export default function CourseDetails(){
        <ChatSection/>
        </div>
 
-  <SectionSideBar/>
+  <SectionSideBar course={course}/>
  
   </div>
 }

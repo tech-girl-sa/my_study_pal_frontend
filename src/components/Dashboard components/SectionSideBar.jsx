@@ -3,12 +3,12 @@ import classes from "./SectionSideBar.module.css";
 import { FaTrash, FaPen } from "react-icons/fa";
 
 
-export default function SectionSideBar(){
+export default function SectionSideBar({course}){
     return <aside className={classes.rightSidebar}>
     <div className={classes.sidebarHeader}>
       <div>
       <h4>Current Course:</h4>
-      <h3 className={classes.title}>  Calculus Basics</h3>
+      <h3 className={classes.title}>  {course?.title}</h3>
       </div>
       <button ><FaPen/> Edit Course</button>
       <button class="archiveBtn" ><FaTrash/> Archive Course</button>
