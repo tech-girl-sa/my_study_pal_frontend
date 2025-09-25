@@ -11,7 +11,6 @@ export default function(){
   // detect chat pages by path pattern
   const isChatPage = /^\/dashboard\/courses\/\d+\/\d+$/.test(pathname); 
     
-    console.log(isChatPage)
     return <div className={classes.dashboardPage}>
         <Navbar></Navbar>
     

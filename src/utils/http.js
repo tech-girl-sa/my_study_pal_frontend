@@ -160,3 +160,17 @@ export async function getCourse(courseId) {
     const course = await getData(url, "course")
     return course
 }
+
+export async function getSections(courseId) {
+    const instanceName = 'courseSections'
+    const url = `http://localhost:8000/api/courses/${courseId}/sections/`
+    const sections = await getData(url, "courseSections")
+    return sections
+}
+
+export async function getSection(sectionId) {
+    const instanceName = 'section'
+    const url = `http://localhost:8000/api/sections/${sectionId}/`
+    const section = await getData(url, "section")
+    return section
+}

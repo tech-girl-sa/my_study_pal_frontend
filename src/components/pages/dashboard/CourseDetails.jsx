@@ -1,4 +1,4 @@
-import { useGetCourse } from "../../../utils/hooks";
+import { useGetCourse, useGetSection } from "../../../utils/hooks";
 import RoundBlueButton from "../../common/RoundBlueButton";
 import ChatSection from "../../Dashboard components/ChatSection";
 import SectionSideBar from "../../Dashboard components/SectionSideBar";
@@ -8,7 +8,8 @@ import { FaPen, FaUpload, FaBoxArchive, FaPlus } from "react-icons/fa6";
 
 
 export default function CourseDetails(){
-  const {data:course, isLoading, error} = useGetCourse()
+  const {data:course} = useGetCourse()
+  const {data:section} = useGetSection()
   
     return <div className={classes.coursePage}>
 
@@ -17,7 +18,7 @@ export default function CourseDetails(){
       <div className={classes.courseHeader}>
          <div className={classes.courseInfo}>
           <h2 className={classes.courseTitle}>{course?.title}</h2>
-          <span className={classes.currentSection}>Section: <strong>Introduction</strong></span>
+          <span className={classes.currentSection}>Section: <strong>{section?.title}</strong></span>
         </div>
         <div className={classes.courseActions}>
         <RoundBlueButton><FaPen /> Edit Section</RoundBlueButton>
