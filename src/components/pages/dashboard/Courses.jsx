@@ -3,30 +3,11 @@ import classes from "./Courses.module.css"
 import Filters from "../../common/filters.jsx";
 import PageHeader from "../../common/PageHeader";
 import Pagination from "../../common/Pagination.jsx";
+import { useGetCourses } from "../../../utils/hooks.js";
+import { NavLink } from "react-router-dom";
 
 
-const courses = [
-    {
-      id: 1,
-      title: "Algebra Basics",
-      url: "courses/1/",
-      subject: "Mathematics",
-      documents: 6,
-      quizzes: 3,
-      created: "Feb 12, 2025",
-      actions: "View"
-    },
-    {
-      id: 2,
-      title: "Cell Structures",
-      url: "#",
-      subject: "Biology",
-      documents: 4,
-      quizzes: 2,
-      created: "Mar 5, 2025",
-      actions: "View"
-    }
-  ];
+
 
   const tags = [
     { id: 1, label: "STEM" },
@@ -39,21 +20,28 @@ const courses = [
   
 export default function Courses(){
 const filterChoices=[[{key:"",label:"All Subjects"},{key:"math",label:"Math"},{key:"science",label:"Science"}]]
-    
+const {data:courses}= useGetCourses()
     return <>
     <div className={classes.Page}>
     <PageHeader title="All Courses" subtitle="Explore all the courses in your study space."/>
    <Filters tags={tags} placeholder="Search courses..." 
    filterChoices={filterChoices} buttonText="Create New Course" />
    </div>
-    <Table headers={["Course Title", "Subject", "Documents", "Quizzes", "Created at" ,"View Course"]}>
-          {courses.map(course=> (<tr id={course.id}>
-            <td  className={classes.courseTitle}><a href={course.url} >{course.title}</a></td>
+    <Table headers={["Course Title", "Subject", "Documents", "Created at" ,"View Course"]}>
+          {courses?.map(course=> (<tr id={course.id}>
+            <td  className={classes.courseTitle}><NavLink
+              to={`/dashboard/courses/${course.id}/${course.first_section_id}`} >
+                {course.title}</NavLink></td>
             <td>{course.subject}</td>
-            <td>{course.documents}</td>
-            <td>{course.quizzes}</td>
-            <td>{course.created}</td>
-            <td><a href={course.url} class="view-course-link">View Course</a></td>
+            <td>{course.document}</td>
+            <td>{new Date(course.created_at).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+})}</td>
+            <td><NavLink to={`/dashboard/courses/${course.id}/${course.first_section_id}`} class="view-course-link">View Course</NavLink></td>
           </tr>))}
      </Table>
  <Pagination pagesNbr={3}/>

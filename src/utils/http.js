@@ -174,3 +174,10 @@ export async function getSection(sectionId) {
     const section = await getData(url, "section")
     return section
 }
+
+export async function getCourses() {
+    const instanceName = 'courses'
+    const url = `http://localhost:8000/api/courses/`
+    const courses = await getData(url, "courses")
+    return courses
+}

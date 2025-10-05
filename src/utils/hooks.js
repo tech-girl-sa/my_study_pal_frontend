@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { createNewRegistration, getCourse, getData, getMessages, getSection, getSections, sendLoginRequest, setUserInfo, setUserMessage } from "./http";
+import { createNewRegistration, getCourse, getCourses, getData, getMessages, getSection, getSections, sendLoginRequest, setUserInfo, setUserMessage } from "./http";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { setAuthToken } from "./authentication";
 
@@ -158,8 +158,10 @@ export function useSetUserMessage(){
 export function useGetCourse(){
   const {courseId} = useParams();
   const {data, isLoading, error} = useQuery({
-    queryKey: "course",
+    queryKey:  ["course", courseId],
     queryFn: () => getCourse(courseId),
+    refetchOnMount: "always", 
+
   })
 
     return {
@@ -185,8 +187,22 @@ export function useGetSections(){
 export function useGetSection(){
   const {sectionId} = useParams();
   const {data, isLoading, error} = useQuery({
-    queryKey: "section",
+    queryKey: ["section", sectionId],
     queryFn: () => getSection(sectionId),
+  })
+
+    return {
+      data,
+      isLoading,
+      error
+    }
+}
+
+export function useGetCourses(){
+  const {sectionId} = useParams();
+  const {data, isLoading, error} = useQuery({
+    queryKey: "courses",
+    queryFn: () => getCourses(sectionId),
   })
 
     return {
