@@ -181,3 +181,10 @@ export async function getCourses() {
     const courses = await getData(url, "courses")
     return courses
 }
+
+export async function getSubjects() {
+    const instanceName = 'subjects'
+    const url = `http://localhost:8000/api/subjects/`
+    const courses = await getData(url, "subjects")
+    return courses
+}
