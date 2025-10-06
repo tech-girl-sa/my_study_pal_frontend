@@ -185,13 +185,20 @@ export async function getCourses() {
 export async function getSubjects() {
     const instanceName = 'subjects'
     const url = `http://localhost:8000/api/subjects/`
-    const courses = await getData(url, instanceName)
-    return courses
+    const subjects = await getData(url, instanceName)
+    return subjects
 }
 
 export async function getDocuments() {
     const instanceName = 'documents'
     const url = `http://localhost:8000/api/documents/`
-    const courses = await getData(url, instanceName)
-    return courses
+    const documents = await getData(url, instanceName)
+    return documents
+}
+
+export async function getDocument(documetId) {
+    const instanceName = 'document'
+    const url = `http://localhost:8000/api/documents/${documetId}/`
+    const document = await getData(url, instanceName)
+    return document
 }

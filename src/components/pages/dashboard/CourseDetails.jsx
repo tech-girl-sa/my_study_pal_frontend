@@ -29,7 +29,7 @@ export default function CourseDetails(){
       </div>
   
  
-       <ChatSection/>
+       <ChatSection document_id={course?.document}/>
        </div>
 
   <SectionSideBar course={course}/>

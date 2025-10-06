@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { createNewRegistration, getCourse, getCourses, getData, getDocuments, getMessages, getSection, getSections, getSubjects, sendLoginRequest, setUserInfo, setUserMessage } from "./http";
+import { createNewRegistration, getCourse, getCourses, getData, getDocument, getDocuments, getMessages, getSection, getSections, getSubjects, sendLoginRequest, setUserInfo, setUserMessage } from "./http";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { setAuthToken } from "./authentication";
 
@@ -80,11 +80,11 @@ export function usegetUserMessages(){
     keepPreviousData: true,
   })
 
-    return [
+    return {
       data,
       isLoading,
       error
-    ]
+    }
 }
 
 export function useSetUserMessage(){
@@ -234,6 +234,20 @@ export function useGetDocuments(){
     queryFn: () => getDocuments(),
     refetchOnMount: "always",
     staleTime: 0,
+  })
+
+    return {
+      data,
+      isLoading,
+      error
+    }
+}
+
+export function useGetDocument(documetId){
+  const {data, isLoading, error} = useQuery({
+    queryKey: ["document", documetId],
+    queryFn: () => getDocument(documetId),
+    enabled: !!documetId,
   })
 
     return {
