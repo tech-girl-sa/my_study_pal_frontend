@@ -150,41 +150,48 @@ export async function getData(url, instanceName, authentication=true) {
 export async function getMessages(sectionId) {
     const instanceName = 'Messages'
     const url = `http://localhost:8000/api/sections/${sectionId}/messages`
-    const userMessage = await getData(url, "messages")
+    const userMessage = await getData(url, instanceName)
     return userMessage
 }
 
 export async function getCourse(courseId) {
     const instanceName = 'course'
     const url = `http://localhost:8000/api/courses/${courseId}/`
-    const course = await getData(url, "course")
+    const course = await getData(url, instanceName)
     return course
 }
 
 export async function getSections(courseId) {
     const instanceName = 'courseSections'
     const url = `http://localhost:8000/api/courses/${courseId}/sections/`
-    const sections = await getData(url, "courseSections")
+    const sections = await getData(url, instanceName)
     return sections
 }
 
 export async function getSection(sectionId) {
     const instanceName = 'section'
     const url = `http://localhost:8000/api/sections/${sectionId}/`
-    const section = await getData(url, "section")
+    const section = await getData(url, instanceName)
     return section
 }
 
 export async function getCourses() {
     const instanceName = 'courses'
     const url = `http://localhost:8000/api/courses/`
-    const courses = await getData(url, "courses")
+    const courses = await getData(url, instanceName)
     return courses
 }
 
 export async function getSubjects() {
     const instanceName = 'subjects'
     const url = `http://localhost:8000/api/subjects/`
-    const courses = await getData(url, "subjects")
+    const courses = await getData(url, instanceName)
+    return courses
+}
+
+export async function getDocuments() {
+    const instanceName = 'documents'
+    const url = `http://localhost:8000/api/documents/`
+    const courses = await getData(url, instanceName)
     return courses
 }

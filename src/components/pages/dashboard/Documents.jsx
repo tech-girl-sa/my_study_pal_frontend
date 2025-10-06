@@ -1,3 +1,4 @@
+import { useGetDocuments } from "../../../utils/hooks.js";
 import FileUpload from "../../common/FileUpload.jsx";
 import PageHeader from "../../common/PageHeader";
 import Pagination from "../../common/Pagination";
@@ -34,7 +35,8 @@ export default function Documents(){
             {key:"linear-algebra",label:"Linear Algebra"},
             {key:"french",label:"French"}]
       ]
-    
+    const {data:documents}= useGetDocuments()
+    console.log(documents)
     return <>
     <PageHeader title="Documents" subtitle="Explore all the documents in your study space."></PageHeader>
     <Section title="Upload Document" icon="upload">
@@ -49,11 +51,18 @@ export default function Documents(){
     <Filters tags={[]} placeholder="Search documents..." filterChoices={filterChoices}></Filters>
 
 <Table headers={["Document Title", "Subject", "Course", "Created at" ,"Actions"]}>
-          {documents.map(document=> (<tr id={document.id}>
-            <td  className={classes.name}><a href="#">{document.name}</a></td>
+          {documents?.map(document=> (<tr id={document.id}>
+            <td  className={classes.name}><a href={document.file}>{document.title}</a></td>
             <td>{document.subject}</td>
             <td>{document.course}</td>
-            <td>{document.dateCreated}</td>
+            <td>{new Date(document.created_at).toLocaleDateString("en-US", {
+                                                          year: "numeric",
+                                                          month: "long",
+                                                          day: "numeric",
+                                                          hour: "2-digit",
+                                                          minute: "2-digit",
+                                                        })}
+            </td>
             <td><button className={classes.deleteBtn}><FaTrash/></button></td>
           </tr>))}
      </Table>

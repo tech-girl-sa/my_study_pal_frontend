@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { createNewRegistration, getCourse, getCourses, getData, getMessages, getSection, getSections, getSubjects, sendLoginRequest, setUserInfo, setUserMessage } from "./http";
+import { createNewRegistration, getCourse, getCourses, getData, getDocuments, getMessages, getSection, getSections, getSubjects, sendLoginRequest, setUserInfo, setUserMessage } from "./http";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { setAuthToken } from "./authentication";
 
@@ -217,6 +217,21 @@ export function useGetSubjects(){
   const {data, isLoading, error} = useQuery({
     queryKey: "subjects",
     queryFn: () => getSubjects(),
+    refetchOnMount: "always",
+    staleTime: 0,
+  })
+
+    return {
+      data,
+      isLoading,
+      error
+    }
+}
+
+export function useGetDocuments(){
+  const {data, isLoading, error} = useQuery({
+    queryKey: "documents",
+    queryFn: () => getDocuments(),
     refetchOnMount: "always",
     staleTime: 0,
   })
