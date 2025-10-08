@@ -182,9 +182,13 @@ export async function getCourses() {
     return courses
 }
 
-export async function getSubjects() {
+export async function getSubjects({ search, ordering, filters }) {
+    let params = new URLSearchParams(filters);
+    if (ordering) params.append("ordering", ordering);
+    if (search) params.append("search", search);
+    params = params.toString();
     const instanceName = 'subjects'
-    const url = `http://localhost:8000/api/subjects/`
+    const url = `http://localhost:8000/api/subjects/?${params}`
     const subjects = await getData(url, instanceName)
     return subjects
 }

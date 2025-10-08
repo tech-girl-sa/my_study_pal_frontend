@@ -2,14 +2,31 @@ import RoundBlueButton from "./RoundBlueButton"
 import { FaPlus, FaSearch } from "react-icons/fa";
 import classes from './Filters.module.css'
 import Tags from "./Tags";
+import { useState } from "react";
 
 
-export default function Filters({tags,placeholder,filterChoices,buttonText}){
+export default function Filters({tags,placeholder,filterChoices,buttonText, setFilters, filters}){
+  const [selectedTags, setSelectedTags] = useState("")
+  
+  function handleChange(updatedState) {
+    setFilters?.((oldState) => ({...oldState,...updatedState}));
+    
+  }
+
+  function handleSearch(e) {
+    const value = e.target.value;
+    handleChange({ search: value });
+  }
+
+  function handleOrdering(e) {
+    const value = e.target.value;
+    handleChange({ ordering: value });
+  }
 
     return  <>
     <div className={classes.controls}>
       <div className={classes.searchBar}>
-        <input type="text" placeholder={placeholder}/>
+        <input type="text" placeholder={placeholder} value={filters.search} onChange={handleSearch}/>
         <FaSearch className={classes.icon}/>
       </div>
    {filterChoices.map(filter=>
@@ -17,12 +34,12 @@ export default function Filters({tags,placeholder,filterChoices,buttonText}){
         {filter.map(choice=><option value={choice.key}>{choice.label}</option>)}
       </select>)}
   
-      <select className={classes.sortDropdown}>
+      <select className={classes.sortDropdown} onChange={handleOrdering} value={filters.ordering}>
         <option value="">Sort by</option>
-        <option value="newest">Newest</option>
-        <option value="oldest">Oldest</option>
-        <option value="az">A-Z</option>
-        <option value="za">Z-A</option>
+        <option value="-created_at">Newest</option>
+        <option value="created_at">Oldest</option>
+        <option value="title">A-Z</option>
+        <option value="-title">Z-A</option>
       </select>
       {buttonText?
       <RoundBlueButton>
@@ -30,6 +47,10 @@ export default function Filters({tags,placeholder,filterChoices,buttonText}){
       </RoundBlueButton>: ""}
     </div>
 
-      <Tags tags={tags}/>
+      <Tags tags={tags} 
+      setSelectedTags={setSelectedTags} 
+      selectedTags={selectedTags}
+      setFilters={handleChange}
+      />
   </>
 }

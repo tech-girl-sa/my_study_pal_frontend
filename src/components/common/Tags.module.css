@@ -20,6 +20,10 @@
     background-color: #d2edf9;
   }
   
-
+  .tagFilters button.active {
+    background-color: #2a93d5; 
+    color: #ffffff; 
+    border: 1px solid #2a93d5; 
+  }
 
 

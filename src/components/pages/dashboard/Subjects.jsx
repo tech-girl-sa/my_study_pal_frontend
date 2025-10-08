@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Filters from "../../common/filters.jsx";
 import PageHeader from "../../common/PageHeader";
 import Pagination from "../../common/Pagination.jsx";
@@ -13,19 +14,23 @@ const tags = [
 ];
 
 export default function Subjects(){
+  const [filters, setFilters] =  useState({
+    search:"",
+    ordering:"",
+    filters:{}
+  })
 
-  const filterChoices=[
-    [{key:"",label:"All"},
-      {key:"most-courses",label:"Most Courses"},
-      {key:"most-recent",label:"Recently Added"}]
-  ]
+  const filterChoices=[]
     return <>
     <div className={classes.Page}>
     <PageHeader title="All Subjects" subtitle="Explore all the subjects in your study space."/>
    <Filters tags={tags} placeholder="Search subjects..." 
-   filterChoices={filterChoices} buttonText="Create New Subject"/>
+   filterChoices={filterChoices} buttonText="Create New Subject"
+   setFilters={setFilters}
+   filters={filters}
+   />
    </div>
-  <SubjectsGrid/>
+  <SubjectsGrid filters={filters}/>
  <Pagination pagesNbr={3}/>
   </>
 }

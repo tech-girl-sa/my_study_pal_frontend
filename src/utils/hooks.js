@@ -213,10 +213,10 @@ export function useGetCourses(){
     }
 }
 
-export function useGetSubjects(){
+export function useGetSubjects(filters){
   const {data, isLoading, error} = useQuery({
-    queryKey: "subjects",
-    queryFn: () => getSubjects(),
+    queryKey: ["subjects",filters],
+    queryFn: () => getSubjects(filters),
     refetchOnMount: "always",
     staleTime: 0,
   })
