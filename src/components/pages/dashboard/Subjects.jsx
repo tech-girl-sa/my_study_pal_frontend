@@ -4,14 +4,9 @@ import PageHeader from "../../common/PageHeader";
 import Pagination from "../../common/Pagination.jsx";
 import SubjectsGrid from "../../subjects/SubjectsGrid.jsx";
 import classes from "./Subjects.module.css"
+import { useGetSubjectTags } from "../../../utils/hooks.js";
 
-const tags = [
-  { id: 1, label: "STEM" },
-  { id: 2, label: "Humanities" },
-  { id: 3, label: "Languages" },
-  { id: 4, label: "Popular" },
-  { id: 5, label: "New" },
-];
+
 
 export default function Subjects(){
   const [filters, setFilters] =  useState({
@@ -19,6 +14,8 @@ export default function Subjects(){
     ordering:"",
     filters:{}
   })
+
+  const {data:tags} = useGetSubjectTags()
 
   const filterChoices=[]
     return <>

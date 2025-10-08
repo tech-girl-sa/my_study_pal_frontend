@@ -206,3 +206,11 @@ export async function getDocument(documetId) {
     const document = await getData(url, instanceName)
     return document
 }
+
+
+export async function getSubjectTags() {
+    const instanceName = 'Tags'
+    const url = `http://localhost:8000/api/subjects/tags/`
+    const Tags = await getData(url, instanceName)
+    return Tags
+}

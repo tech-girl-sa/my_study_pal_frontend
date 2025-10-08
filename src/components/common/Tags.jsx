@@ -23,8 +23,8 @@ export default function Tags({tags,setSelectedTags, selectedTags, setFilters}){
 
     }
     return  <div className={classes.tagFilters}>
-    {tags.map(tag=><button onClick={handleClick} 
-    className={selectedTags.includes(tag.label)? classes.active:""}>
-    {tag.label}</button>)}
+    {tags?.map(tag=><button onClick={handleClick} 
+    className={selectedTags.includes(tag)? classes.active:""}>
+    {tag}</button>)}
     </div>
 }

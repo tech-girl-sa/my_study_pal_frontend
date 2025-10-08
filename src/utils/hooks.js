@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { createNewRegistration, getCourse, getCourses, getData, getDocument, getDocuments, getMessages, getSection, getSections, getSubjects, sendLoginRequest, setUserInfo, setUserMessage } from "./http";
+import { createNewRegistration, getCourse, getCourses, getData, getDocument, getDocuments, getMessages, getSection, getSections, getSubjects, getSubjectTags, sendLoginRequest, setUserInfo, setUserMessage } from "./http";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { setAuthToken } from "./authentication";
 
@@ -248,6 +248,21 @@ export function useGetDocument(documetId){
     queryKey: ["document", documetId],
     queryFn: () => getDocument(documetId),
     enabled: !!documetId,
+  })
+
+    return {
+      data,
+      isLoading,
+      error
+    }
+}
+
+export function useGetSubjectTags(){
+  const {data, isLoading, error} = useQuery({
+    queryKey: "tags",
+    queryFn: () => getSubjectTags(),
+    refetchOnMount: "always",
+    staleTime: 0,
   })
 
     return {
