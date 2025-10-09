@@ -1,8 +1,18 @@
+.mainLayout{
+  display: flex;
+  justify-content: center;
+  gap: 90px;
+}
 .createForm {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    width: 40%;
   }
+.sideImage {
+  width: 50%;
+  padding: 80px;
+}
   
   .createForm label {
     font-weight: 600;

@@ -7,6 +7,7 @@ import RoundBlueButton from "../../common/RoundBlueButton";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useSetNewSubject } from "../../../utils/hooks";
+import create_subject from "../../../assets/robot_arm.png";
 
 const initialValues={
   title: '',
@@ -26,9 +27,10 @@ const validationSchema=Yup.object({
 
 export default function CreateSubject(){
     const {handleSubmit} = useSetNewSubject("/dashboard/subjects")
-    
+
     return  (<>
     <PageHeader title="Create New Subject" subtitle="Add a new subject to your study plan."/>
+    <div className={classes.mainLayout}>
        <Formik
            initialValues={initialValues}
            validationSchema={validationSchema}
@@ -49,6 +51,8 @@ export default function CreateSubject(){
       <RoundBlueButton type="submit"><FaCirclePlus /> Create Subject</RoundBlueButton>
     </CustomForm>
     </Formik>
+    <img  className={classes.sideImage} src={create_subject} alt="Create subject"/>
+    </div>
     
   </>)
 }
