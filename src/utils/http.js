@@ -175,9 +175,13 @@ export async function getSection(sectionId) {
     return section
 }
 
-export async function getCourses() {
+export async function getCourses({ search, ordering, filters }) {
+    let params = new URLSearchParams(filters);
+    if (ordering) params.append("ordering", ordering);
+    if (search) params.append("search", search);
+    params = params.toString();
     const instanceName = 'courses'
-    const url = `http://localhost:8000/api/courses/`
+    const url = `http://localhost:8000/api/courses/?${params}`
     const courses = await getData(url, instanceName)
     return courses
 }
@@ -221,4 +225,19 @@ export async function setNewSubject(subjectData) {
     const url = `http://localhost:8000/api/subjects/`
     const subject = await instanceMappingWrapper(url, instanceName, keyMappings, subjectData, "POST")
     return subject
+}
+
+
+export async function getSubject(subjectId) {
+    const instanceName = 'subject'
+    const url = `http://localhost:8000/api/subjects/${subjectId}/`
+    const subject = await getData(url, instanceName)
+    return subject
+}
+
+export async function getCourseTags() {
+    const instanceName = 'Tags'
+    const url = `http://localhost:8000/api/courses/tags/`
+    const Tags = await getData(url, instanceName)
+    return Tags
 }

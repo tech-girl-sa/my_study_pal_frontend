@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { createNewRegistration, getCourse, getCourses, getData, getDocument, getDocuments, getMessages, getSection, getSections, getSubjects, getSubjectTags, sendLoginRequest, setNewSubject, setUserInfo, setUserMessage } from "./http";
+import { createNewRegistration, getCourse, getCourses, getCourseTags, getData, getDocument, getDocuments, getMessages, getSection, getSections, getSubject, getSubjects, getSubjectTags, sendLoginRequest, setNewSubject, setUserInfo, setUserMessage } from "./http";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { setAuthToken } from "./authentication";
 
@@ -198,10 +198,10 @@ export function useGetSection(){
     }
 }
 
-export function useGetCourses(){
+export function useGetCourses(filters){
   const {data, isLoading, error} = useQuery({
-    queryKey: "courses",
-    queryFn: () => getCourses(),
+    queryKey: ["courses",filters],
+    queryFn: () => getCourses(filters),
     refetchOnMount: "always",
     staleTime: 0,
   })
@@ -310,5 +310,40 @@ export function useSetNewSubject(url){
       isPending,
       isError,
       error,
+    }
+}
+
+export function useGetSubject(){
+  const {subjectId} = useParams();
+  const {data, isLoading, error} = useQuery({
+    queryKey:  ["subject", subjectId],
+    queryFn: () => getSubject(subjectId),
+    refetchOnMount: "always", 
+
+  })
+
+    return {
+      data,
+      isLoading,
+      error
+    }
+}
+
+export function useGetCoursesTags(subjectId){
+  const key= ["tags", "courses"]
+  if (subjectId){
+    key=[...keys, subjectId]
+  }
+  const {data, isLoading, error} = useQuery({
+    queryKey: key,
+    queryFn: () => getCourseTags(),
+    refetchOnMount: "always",
+    staleTime: 0,
+  })
+
+    return {
+      data,
+      isLoading,
+      error
     }
 }

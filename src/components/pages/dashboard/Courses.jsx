@@ -3,29 +3,28 @@ import classes from "./Courses.module.css"
 import Filters from "../../common/filters.jsx";
 import PageHeader from "../../common/PageHeader";
 import Pagination from "../../common/Pagination.jsx";
-import { useGetCourses } from "../../../utils/hooks.js";
+import { useGetCourses, useGetCoursesTags } from "../../../utils/hooks.js";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 
-
-
-  const tags = [
-    { id: 1, label: "STEM" },
-    { id: 2, label: "Humanities" },
-    { id: 3, label: "Languages" },
-    { id: 4, label: "Popular" },
-    { id: 5, label: "New" },
-  ];
 
   
 export default function Courses(){
 const filterChoices=[[{key:"",label:"All Subjects"},{key:"math",label:"Math"},{key:"science",label:"Science"}]]
-const {data:courses}= useGetCourses()
+const [filters, setFilters] =  useState({
+  search:"",
+  ordering:"",
+  filters:{}
+})
+const {data:courses}= useGetCourses(filters)
+const {data:tags} = useGetCoursesTags()
     return <>
     <div className={classes.Page}>
     <PageHeader title="All Courses" subtitle="Explore all the courses in your study space."/>
    <Filters tags={tags} placeholder="Search courses..." 
-   filterChoices={filterChoices} buttonText="Create New Course" />
+   filterChoices={filterChoices} buttonText="Create New Course" 
+   filters={filters} setFilters={setFilters}/>
    </div>
     <Table headers={["Course Title", "Subject", "Documents", "Created at" ,"View Course"]}>
           {courses?.map(course=> (<tr id={course.id}>
