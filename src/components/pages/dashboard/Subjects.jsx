@@ -25,6 +25,7 @@ export default function Subjects(){
    filterChoices={filterChoices} buttonText="Create New Subject"
    setFilters={setFilters}
    filters={filters}
+   path="create"
    />
    </div>
   <SubjectsGrid filters={filters}/>

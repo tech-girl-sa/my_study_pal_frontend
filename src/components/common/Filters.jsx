@@ -3,9 +3,10 @@ import { FaPlus, FaSearch } from "react-icons/fa";
 import classes from './Filters.module.css'
 import Tags from "./Tags";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 
-export default function Filters({tags,placeholder,filterChoices,buttonText, setFilters, filters}){
+export default function Filters({tags,placeholder,filterChoices,buttonText, setFilters, filters,path}){
   const [selectedTags, setSelectedTags] = useState("")
   
   function handleChange(updatedState) {
@@ -43,7 +44,7 @@ export default function Filters({tags,placeholder,filterChoices,buttonText, setF
       </select>
       {buttonText?
       <RoundBlueButton>
-      <FaPlus /> {buttonText}
+      <FaPlus /> <NavLink to={path}>{buttonText}</NavLink>
       </RoundBlueButton>: ""}
     </div>
 
