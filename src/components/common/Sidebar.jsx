@@ -3,15 +3,16 @@ import { FaHome, FaBook, FaCopy, FaFolderOpen, FaPenNib, FaCog } from "react-ico
 import { NavLink } from 'react-router-dom';
 
 export default function Sidebar(){
+  const assignClass = ({ isActive }) => isActive ? `${classes.active} ` : ''
 
     return  <aside className={classes.sidebar}>
     <nav className={classes.nav}>
-      <NavLink to="/dashboard" class="nav-link active"><FaHome/> Home</NavLink>
-      <NavLink to="/dashboard/subjects"><FaBook/> Subjects</NavLink>
-      <NavLink to="/dashboard/courses"><FaCopy/> Courses</NavLink>
-      <NavLink to="/dashboard/documents"><FaFolderOpen/> Documents</NavLink>
-      <a href="/main/quizzes"><FaPenNib/> Quizzes</a>
-      <a href="#"><FaCog/>Settings</a>
+      <NavLink to="/dashboard" end className={assignClass}><FaHome/> Home</NavLink>
+      <NavLink to="/dashboard/subjects" className={assignClass}><FaBook/> Subjects</NavLink>
+      <NavLink to="/dashboard/courses" className={assignClass}><FaCopy/> Courses</NavLink>
+      <NavLink to="/dashboard/documents" className={assignClass}><FaFolderOpen/> Documents</NavLink>
+      <a href="/main/quizzes" className={assignClass}><FaPenNib/> Quizzes</a>
+      <a href="#" className={assignClass}><FaCog/>Settings</a>
     </nav>
     <div className={classes.sidebarFooter}>© 2025 Study Pal</div>
   </aside>

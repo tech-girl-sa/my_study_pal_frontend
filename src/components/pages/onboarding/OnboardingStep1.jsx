@@ -2,9 +2,6 @@ import classes from './OnboardingLayout.module.css'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Input from '../../common/Input';
-import { useNavigate } from "react-router-dom";
-import { useMutation } from '@tanstack/react-query';
-import { createNewRegistration } from '../../../utils/http';
 import BlackSubmitButton from '../../common/BlackSubmitButton';
 import CustomForm from '../../common/CustomForm';
 import { useSetUserInfo } from '../../../utils/hooks';
