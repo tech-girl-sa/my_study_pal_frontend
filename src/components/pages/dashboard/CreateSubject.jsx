@@ -1,4 +1,4 @@
-import { FaBookOpen, FaHeading, FaAlignLeft, FaTags, FaCirclePlus } from "react-icons/fa6";
+import { FaCirclePlus } from "react-icons/fa6";
 import classes from "./CreateSubject.module.css";
 import PageHeader from "../../common/PageHeader";
 import CustomForm from "../../common/CustomForm";
@@ -6,6 +6,7 @@ import Input from "../../common/Input";
 import RoundBlueButton from "../../common/RoundBlueButton";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { useSetNewSubject } from "../../../utils/hooks";
 
 const initialValues={
   title: '',
@@ -24,9 +25,8 @@ const validationSchema=Yup.object({
 })
 
 export default function CreateSubject(){
-    function handleSubmit(values){
-        console.log(values)
-    }
+    const {handleSubmit} = useSetNewSubject("/dashboard/subjects")
+    
     return  (<>
     <PageHeader title="Create New Subject" subtitle="Add a new subject to your study plan."/>
        <Formik

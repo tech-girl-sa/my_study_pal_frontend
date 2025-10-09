@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { createNewRegistration, getCourse, getCourses, getData, getDocument, getDocuments, getMessages, getSection, getSections, getSubjects, getSubjectTags, sendLoginRequest, setUserInfo, setUserMessage } from "./http";
+import { createNewRegistration, getCourse, getCourses, getData, getDocument, getDocuments, getMessages, getSection, getSections, getSubjects, getSubjectTags, sendLoginRequest, setNewSubject, setUserInfo, setUserMessage } from "./http";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { setAuthToken } from "./authentication";
 
@@ -269,5 +269,46 @@ export function useGetSubjectTags(){
       data,
       isLoading,
       error
+    }
+}
+
+export function useSetNewSubject(url){
+  const navigate = useNavigate();
+  const {mutate, isPending, isError, error} = useMutation({
+    mutationFn: setNewSubject
+  })
+
+  function handleSubmit(values, { setSubmitting, setErrors, setStatus }){
+      //transform tags to list
+      const transformedValues = {
+        ...values,
+        tags: values.tags
+          .split(",")
+          .map((t) => t.trim())
+          .filter(Boolean),
+      };
+
+      mutate(transformedValues, {
+        onSuccess: (data) => {
+          setSubmitting(false);
+          navigate(url)
+        },
+        onError: async (err) => {
+          if (err?.code === 400 && err?.info) {
+            const fieldErrors = Object.fromEntries(
+              Object.entries(err.info).map(([key, value]) => [key, value[0]])
+            );
+            setErrors(fieldErrors); 
+          }else{setStatus(err.message)
+          }
+          setSubmitting(false);
+        },
+      });
+    }
+    return {
+      handleSubmit,
+      isPending,
+      isError,
+      error,
     }
 }

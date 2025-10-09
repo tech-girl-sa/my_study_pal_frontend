@@ -214,3 +214,11 @@ export async function getSubjectTags() {
     const Tags = await getData(url, instanceName)
     return Tags
 }
+
+export async function setNewSubject(subjectData) {
+    const keyMappings = {}
+    const instanceName = 'subject'
+    const url = `http://localhost:8000/api/subjects/`
+    const subject = await instanceMappingWrapper(url, instanceName, keyMappings, subjectData, "POST")
+    return subject
+}
