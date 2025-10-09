@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { createNewRegistration, getCourse, getCourses, getCourseTags, getData, getDocument, getDocuments, getMessages, getSection, getSections, getSubject, getSubjects, getSubjectTags, sendLoginRequest, setNewSubject, setUserInfo, setUserMessage } from "./http";
+import { createNewRegistration, getCourse, getCourses, getCourseTags, getData, getDocument, getDocuments, getMessages, getSection, getSections, getSubject, getSubjectChoices, getSubjects, getSubjectTags, sendLoginRequest, setNewSubject, setUserInfo, setUserMessage } from "./http";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { setAuthToken } from "./authentication";
 
@@ -259,7 +259,7 @@ export function useGetDocument(documetId){
 
 export function useGetSubjectTags(){
   const {data, isLoading, error} = useQuery({
-    queryKey: "tags",
+    queryKey: ["tags", "subjects"],
     queryFn: () => getSubjectTags(),
     refetchOnMount: "always",
     staleTime: 0,
@@ -337,6 +337,22 @@ export function useGetCoursesTags(subjectId){
   const {data, isLoading, error} = useQuery({
     queryKey: key,
     queryFn: () => getCourseTags(),
+    refetchOnMount: "always",
+    staleTime: 0,
+  })
+
+    return {
+      data,
+      isLoading,
+      error
+    }
+}
+
+
+export function useGetSubjectChoices(){
+  const {data, isLoading, error} = useQuery({
+    queryKey: "subject_choices",
+    queryFn: () => getSubjectChoices(),
     refetchOnMount: "always",
     staleTime: 0,
   })

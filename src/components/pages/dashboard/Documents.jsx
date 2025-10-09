@@ -28,12 +28,15 @@ const documents = [
 
 export default function Documents(){
     const filterChoices=[
-        [{key:"",label:"All Subjects"},
+      { filterKey:"subjects",
+        fiterChoices:[{key:"",label:"All Subjects"},
           {key:"math",label:"Math"},
-          {key:"science",label:"Science"}],
-          [{key:"",label:"All Courses"},
+          {key:"science",label:"Science"}]},
+      {filterKey:"courses",
+         filterChoices: [{key:"",label:"All Courses"},
             {key:"linear-algebra",label:"Linear Algebra"},
             {key:"french",label:"French"}]
+        }
       ]
     const {data:documents}= useGetDocuments()
     console.log(documents)

@@ -241,3 +241,10 @@ export async function getCourseTags() {
     const Tags = await getData(url, instanceName)
     return Tags
 }
+
+export async function getSubjectChoices() {
+    const instanceName = 'subjectChoices'
+    const url = `http://localhost:8000/api/courses/subject_choices/`
+    const choices = await getData(url, instanceName)
+    return choices
+}

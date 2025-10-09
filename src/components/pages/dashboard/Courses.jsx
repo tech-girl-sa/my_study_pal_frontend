@@ -3,7 +3,7 @@ import classes from "./Courses.module.css"
 import Filters from "../../common/filters.jsx";
 import PageHeader from "../../common/PageHeader";
 import Pagination from "../../common/Pagination.jsx";
-import { useGetCourses, useGetCoursesTags } from "../../../utils/hooks.js";
+import { useGetCourses, useGetCoursesTags, useGetSubjectChoices } from "../../../utils/hooks.js";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
@@ -11,7 +11,13 @@ import { useState } from "react";
 
   
 export default function Courses(){
-const filterChoices=[[{key:"",label:"All Subjects"},{key:"math",label:"Math"},{key:"science",label:"Science"}]]
+const {data:subjectChoices} = useGetSubjectChoices()
+const filterChoices=[
+  {
+  filterKey:"subject",
+  filterChoices: [{key:"",label:"Select subject"},...subjectChoices]
+}
+]
 const [filters, setFilters] =  useState({
   search:"",
   ordering:"",
@@ -19,6 +25,7 @@ const [filters, setFilters] =  useState({
 })
 const {data:courses}= useGetCourses(filters)
 const {data:tags} = useGetCoursesTags()
+
     return <>
     <div className={classes.Page}>
     <PageHeader title="All Courses" subtitle="Explore all the courses in your study space."/>

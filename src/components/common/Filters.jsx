@@ -8,10 +8,13 @@ import { NavLink } from "react-router-dom";
 
 export default function Filters({tags,placeholder,filterChoices,buttonText, setFilters, filters,path}){
   const [selectedTags, setSelectedTags] = useState("")
-  
   function handleChange(updatedState) {
+   
+    if (filters in updatedState){
+      setFilters?.((oldState) => ({...oldState,filters:{...oldState.filters,...updatedState.filters}}));
+    }else{
     setFilters?.((oldState) => ({...oldState,...updatedState}));
-    
+    }
   }
 
   function handleSearch(e) {
@@ -24,6 +27,11 @@ export default function Filters({tags,placeholder,filterChoices,buttonText, setF
     handleChange({ ordering: value });
   }
 
+  function handleSelectFilter(e,filterKey){
+    const value = e.target.value;
+    handleChange({filters:{[filterKey]:value}})
+  }
+
     return  <>
     <div className={classes.controls}>
       <div className={classes.searchBar}>
@@ -31,8 +39,10 @@ export default function Filters({tags,placeholder,filterChoices,buttonText, setF
         <FaSearch className={classes.icon}/>
       </div>
    {filterChoices.map(filter=>
-      <select className={classes.filterDropdown}>
-        {filter.map(choice=><option value={choice.key}>{choice.label}</option>)}
+      <select className={classes.filterDropdown} 
+      onChange={(e)=>handleSelectFilter(e,filter.filterKey)}
+      value={filters.filters[filter.key]}>
+        {filter.filterChoices?.map(choice=><option value={choice.key}>{choice.label}</option>)}
       </select>)}
   
       <select className={classes.sortDropdown} onChange={handleOrdering} value={filters.ordering}>
