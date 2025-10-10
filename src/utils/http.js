@@ -197,9 +197,13 @@ export async function getSubjects({ search, ordering, filters }) {
     return subjects
 }
 
-export async function getDocuments() {
+export async function getDocuments({ search, ordering, filters }) {
+    let params = new URLSearchParams(filters);
+    if (ordering) params.append("ordering", ordering);
+    if (search) params.append("search", search);
+    params = params.toString();
     const instanceName = 'documents'
-    const url = `http://localhost:8000/api/documents/`
+    const url = `http://localhost:8000/api/documents/?${params}`
     const documents = await getData(url, instanceName)
     return documents
 }
@@ -235,9 +239,12 @@ export async function getSubject(subjectId) {
     return subject
 }
 
-export async function getCourseTags() {
+export async function getCourseTags(subjectId="") {
     const instanceName = 'Tags'
-    const url = `http://localhost:8000/api/courses/tags/`
+    let url = `http://localhost:8000/api/courses/tags/`
+    if (subjectId){
+        url = `http://localhost:8000/api/courses/tags/?subject=${subjectId}`
+    }
     const Tags = await getData(url, instanceName)
     return Tags
 }

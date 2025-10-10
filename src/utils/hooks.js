@@ -228,10 +228,10 @@ export function useGetSubjects(filters){
     }
 }
 
-export function useGetDocuments(){
+export function useGetDocuments(filters){
   const {data, isLoading, error} = useQuery({
-    queryKey: "documents",
-    queryFn: () => getDocuments(),
+    queryKey: ["documents",filters],
+    queryFn: () => getDocuments(filters),
     refetchOnMount: "always",
     staleTime: 0,
   })
@@ -330,13 +330,13 @@ export function useGetSubject(){
 }
 
 export function useGetCoursesTags(subjectId){
-  const key= ["tags", "courses"]
+  let key= ["tags", "courses"]
   if (subjectId){
-    key=[...keys, subjectId]
+    key=[...key, subjectId]
   }
   const {data, isLoading, error} = useQuery({
     queryKey: key,
-    queryFn: () => getCourseTags(),
+    queryFn: () => getCourseTags(subjectId),
     refetchOnMount: "always",
     staleTime: 0,
   })

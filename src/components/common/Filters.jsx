@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Filters({tags,placeholder,filterChoices,buttonText, setFilters, filters,path}){
   const [selectedTags, setSelectedTags] = useState("")
+  
   function handleChange(updatedState) {
    
     if (filters in updatedState){
@@ -31,6 +32,7 @@ export default function Filters({tags,placeholder,filterChoices,buttonText, setF
     const value = e.target.value;
     handleChange({filters:{[filterKey]:value}})
   }
+  console.log(filterChoices)
 
     return  <>
     <div className={classes.controls}>

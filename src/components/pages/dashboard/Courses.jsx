@@ -15,8 +15,9 @@ const {data:subjectChoices} = useGetSubjectChoices()
 const filterChoices=[
   {
   filterKey:"subject",
-  filterChoices: [{key:"",label:"Select subject"},...subjectChoices]
+  filterChoices: [{key:"",label:"Select subject"},...(subjectChoices || [])]
 }
+
 ]
 const [filters, setFilters] =  useState({
   search:"",

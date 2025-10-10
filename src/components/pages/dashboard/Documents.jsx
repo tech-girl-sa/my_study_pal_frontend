@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useGetDocuments } from "../../../utils/hooks.js";
 import FileUpload from "../../common/FileUpload.jsx";
 import PageHeader from "../../common/PageHeader";
@@ -9,37 +10,29 @@ import classes from "./Documents.module.css";
 import { FaTrash, FaCloudUploadAlt } from "react-icons/fa";
 
 
-const documents = [
-    {
-      id: 1,
-      name: "Linear Algebra Notes.pdf",
-      subject: "Mathematics",
-      course: "Algebra Foundations",
-      dateCreated: "Apr 20, 2025",
-    },
-    {
-      id: 2,
-      name: "French Grammar Summary.docx",
-      subject: "Languages",
-      course: "French A1",
-      dateCreated: "Mar 5, 2025",
-    }
-  ];
-
 export default function Documents(){
     const filterChoices=[
-      { filterKey:"subjects",
-        fiterChoices:[{key:"",label:"All Subjects"},
+      { filterKey:"subject",
+        filterChoices:[
+          {key:"",label:"All Subjects"},
           {key:"math",label:"Math"},
           {key:"science",label:"Science"}]},
-      {filterKey:"courses",
-         filterChoices: [{key:"",label:"All Courses"},
-            {key:"linear-algebra",label:"Linear Algebra"},
-            {key:"french",label:"French"}]
+      {filterKey:"course",
+        filterChoices: [
+          {key:"",label:"All Courses"},
+          {key:"linear-algebra",label:"Linear Algebra"},
+          {key:"french",label:"French"}]
         }
       ]
-    const {data:documents}= useGetDocuments()
-    console.log(documents)
+    const [filters, setFilters] =  useState({
+        search:"",
+        ordering:"",
+        filters:{}
+      })
+    const {data:documents}= useGetDocuments(filters)
+   
+ 
+
     return <>
     <PageHeader title="Documents" subtitle="Explore all the documents in your study space."></PageHeader>
     <Section title="Upload Document" icon="upload">
@@ -51,7 +44,13 @@ export default function Documents(){
     <Section title="All Documents" icon="folder">
  
 
-    <Filters tags={[]} placeholder="Search documents..." filterChoices={filterChoices}></Filters>
+    <Filters 
+    tags={[]} 
+    placeholder="Search documents..." 
+    filterChoices={filterChoices}
+    filters={filters}
+    setFilters={setFilters}
+    ></Filters>
 
 <Table headers={["Document Title", "Subject", "Course", "Created at" ,"Actions"]}>
           {documents?.map(document=> (<tr id={document.id}>

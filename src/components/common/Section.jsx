@@ -10,7 +10,6 @@ const icons = {
 
 export default function Section({children, icon, title}){
     const Icon = icons[icon];
-    console.log(Icon)
     
     return  <section className={classes.sectionBlock} >
      <div className={classes.sectionHeader} >
