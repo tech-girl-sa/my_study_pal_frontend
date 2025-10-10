@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGetDocuments } from "../../../utils/hooks.js";
+import { useGetDocumentFiltersChoices, useGetDocuments } from "../../../utils/hooks.js";
 import FileUpload from "../../common/FileUpload.jsx";
 import PageHeader from "../../common/PageHeader";
 import Pagination from "../../common/Pagination";
@@ -11,17 +11,19 @@ import { FaTrash, FaCloudUploadAlt } from "react-icons/fa";
 
 
 export default function Documents(){
+  const {data:filtersChoices} = useGetDocumentFiltersChoices()
     const filterChoices=[
       { filterKey:"subject",
         filterChoices:[
           {key:"",label:"All Subjects"},
-          {key:"math",label:"Math"},
-          {key:"science",label:"Science"}]},
+          ...(filtersChoices?.subjects || [])
+        ]
+        },
       {filterKey:"course",
         filterChoices: [
           {key:"",label:"All Courses"},
-          {key:"linear-algebra",label:"Linear Algebra"},
-          {key:"french",label:"French"}]
+          ...(filtersChoices?.courses || [])
+        ]
         }
       ]
     const [filters, setFilters] =  useState({

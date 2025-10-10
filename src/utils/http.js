@@ -255,3 +255,10 @@ export async function getSubjectChoices() {
     const choices = await getData(url, instanceName)
     return choices
 }
+
+export async function getDocumentFiltersChoices() {
+    const instanceName = 'DocumentFiltersChoices'
+    const url = `http://localhost:8000/api/documents/filters_choices/`
+    const choices = await getData(url, instanceName)
+    return choices
+}
