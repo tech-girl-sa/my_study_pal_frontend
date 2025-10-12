@@ -32,7 +32,6 @@ export default function Filters({tags,placeholder,filterChoices,buttonText, setF
     const value = e.target.value;
     handleChange({filters:{[filterKey]:value}})
   }
-  console.log(filterChoices)
 
     return  <>
     <div className={classes.controls}>

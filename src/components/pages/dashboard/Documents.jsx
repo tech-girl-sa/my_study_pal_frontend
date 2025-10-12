@@ -7,7 +7,7 @@ import Section from "../../common/Section";
 import Table from "../../common/Table.jsx";
 import Filters from "../../common/filters.jsx";
 import classes from "./Documents.module.css";
-import { FaTrash, FaCloudUploadAlt } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 
 
 export default function Documents(){

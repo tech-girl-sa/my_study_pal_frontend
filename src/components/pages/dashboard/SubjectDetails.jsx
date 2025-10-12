@@ -1,36 +1,44 @@
 import { NavLink, useParams } from "react-router-dom";
-import {  useGetCourses, useGetCoursesTags, useGetSubject } from "../../../utils/hooks"
+import {  useGetCourses, useGetCoursesTags, useGetDocuments, useGetSubject } from "../../../utils/hooks"
 import Filters from "../../common/filters";
 import PageHeader from "../../common/PageHeader"
 import Pagination from "../../common/Pagination";
 import Section from "../../common/Section"
 import Table from "../../common/Table";
 import { useState } from "react";
-import classes from "./Courses.module.css"
+import CoursesClasses from "./Courses.module.css"
+import { FaTrash } from "react-icons/fa";
+import documentClasses from "./Documents.module.css"
 
 
 
 export default function SubjectDetails(){
   const {subjectId}= useParams()
-  const [filters, setFilters] =  useState({
+  const [Coursefilters, setCourseFilters] =  useState({
     search:"",
     ordering:"",
     filters:{subject:subjectId}
   })
     const {data:subject} = useGetSubject()
-    const {data:courses} = useGetCourses(filters)
-
-  const {data:tags} = useGetCoursesTags(subjectId)
+    const {data:courses} = useGetCourses(Coursefilters)
+    const {data:tags} = useGetCoursesTags(subjectId)
+    
+    const [Documentfilters, setDocumentFilters] =  useState({
+            search:"",
+            ordering:"",
+            filters:{subject:subjectId}
+          })
+    const {data:documents}= useGetDocuments(Documentfilters)
     
     return <>
     <PageHeader title={subject?.title} subtitle={subject?.description}/>
     <Section title="Courses" icon="book">
 
     <Filters tags={tags} placeholder="Search courses..."  buttonText="Create New Course" 
-    filters={filters} setFilters={setFilters} filterChoices={[]}/>
+    filters={Coursefilters} setFilters={setCourseFilters} filterChoices={[]}/>
     <Table headers={["Course Title", "Documents", "Created at" ,"View Course"]}>
           {courses?.map(course=> (<tr id={course.id}>
-            <td  className={classes.courseTitle}><NavLink
+            <td  className={CoursesClasses.courseTitle}><NavLink
               to={`/dashboard/courses/${course.id}/${course.first_section_id}`} >
                 {course.title}</NavLink></td>
         
@@ -48,7 +56,32 @@ export default function SubjectDetails(){
  <Pagination pagesNbr={3}/>
     </Section>
     <Section title="Documents" icon="folder">
-      
+     <Filters 
+        tags={[]} 
+        placeholder="Search documents..." 
+        filterChoices={[]}
+        filters={Documentfilters}
+        setFilters={setDocumentFilters}
+        ></Filters>
+    
+    <Table headers={["Document Title", "Subject", "Course", "Created at" ,"Actions"]}>
+              {documents?.map(document=> (<tr id={document.id}>
+                <td  className={documentClasses.name}><a href={document.file}>{document.title}</a></td>
+                <td>{document.subject}</td>
+                <td>{document.course}</td>
+                <td>{new Date(document.created_at).toLocaleDateString("en-US", {
+                                                              year: "numeric",
+                                                              month: "long",
+                                                              day: "numeric",
+                                                              hour: "2-digit",
+                                                              minute: "2-digit",
+                                                            })}
+                </td>
+                <td><button className={documentClasses.deleteBtn}><FaTrash/></button></td>
+              </tr>))}
+         </Table>
+    
+     <Pagination pagesNbr={2}></Pagination>            
     </Section>
     </>
 }
