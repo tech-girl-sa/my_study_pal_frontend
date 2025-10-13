@@ -1,0 +1,15 @@
+.actionButtons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: end;
+  }
+  .actionButtons .archiveBtn{
+    background-color: #f2f2f2;
+    color: #2a3c4a;
+  }
+  
+  .actionButtons .archiveBtn:hover {
+    background-color: #d1d1d1;
+  }
+ 

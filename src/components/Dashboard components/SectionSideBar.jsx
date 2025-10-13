@@ -16,7 +16,7 @@ export default function SectionSideBar({course}){
       <h3 className={classes.title}>  {course?.title}</h3>
       </div>
       <button ><FaPen/> Edit Course</button>
-      <button class="archiveBtn" ><FaTrash/> Archive Course</button>
+      <button className={classes.archiveBtn} ><FaTrash/> Archive Course</button>
     </div>
     <ul className={classes.tocList}>
       {sections?.map(section=><li><NavLink to={`/dashboard/courses/${section.course}/${section.id}`}>{section.title}</NavLink></li>)}

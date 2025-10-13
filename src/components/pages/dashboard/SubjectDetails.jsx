@@ -8,7 +8,10 @@ import Table from "../../common/Table";
 import { useState } from "react";
 import CoursesClasses from "./Courses.module.css"
 import { FaTrash } from "react-icons/fa";
+import { FaPen, FaBoxArchive} from "react-icons/fa6";
 import documentClasses from "./Documents.module.css"
+import classes from "./SubjectDetails.module.css"
+import RoundBlueButton from "../../common/RoundBlueButton";
 
 
 
@@ -32,6 +35,10 @@ export default function SubjectDetails(){
     
     return <>
     <PageHeader title={subject?.title} subtitle={subject?.description}/>
+    <div className={classes.actionButtons}>
+            <RoundBlueButton><FaPen /> Edit Subject</RoundBlueButton>
+            <RoundBlueButton className={classes.archiveBtn}><FaBoxArchive /> Archive Subject</RoundBlueButton>
+            </div>
     <Section title="Courses" icon="book">
 
     <Filters tags={tags} placeholder="Search courses..."  buttonText="Create New Course" 

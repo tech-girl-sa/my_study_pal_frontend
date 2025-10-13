@@ -23,7 +23,7 @@ export default function CourseDetails(){
         <div className={classes.courseActions}>
         <RoundBlueButton><FaPen /> Edit Section</RoundBlueButton>
         <RoundBlueButton><FaUpload /> Upload Document</RoundBlueButton>
-        <RoundBlueButton className="archive-btn"><FaBoxArchive /> Archive Section</RoundBlueButton>
+        <RoundBlueButton className={classes.archiveBtn}><FaBoxArchive /> Archive Section</RoundBlueButton>
         <RoundBlueButton><FaPlus /> Create Quiz</RoundBlueButton>
         </div>
       </div>
