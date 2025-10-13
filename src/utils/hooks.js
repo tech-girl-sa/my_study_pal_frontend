@@ -1,5 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { createNewRegistration, getCourse, getCourses, getCourseTags, getData, getDocument, getDocumentFiltersChoices, getDocuments, getMessages, getSection, getSections, getSubject, getSubjectChoices, getSubjects, getSubjectTags, sendLoginRequest, setNewSubject, setUserInfo, setUserMessage } from "./http";
+import { createNewRegistration, getCourse, getCourses,
+   getCourseTags, getDocument, getDocumentFiltersChoices, 
+   getDocuments, getMessages, getSection, getSections, 
+   getSubject, getSubjectChoices, getSubjects, getSubjectTags, 
+   sendLoginRequest, setSubject, setUserInfo, setUserMessage } from "./http";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { setAuthToken } from "./authentication";
 
@@ -272,10 +276,11 @@ export function useGetSubjectTags(){
     }
 }
 
-export function useSetNewSubject(url){
+export function useSetSubject(url, method="POST"){
+  const {subjectId} =  useParams();
   const navigate = useNavigate();
   const {mutate, isPending, isError, error} = useMutation({
-    mutationFn: setNewSubject
+    mutationFn: (subjectData)=> setSubject(subjectData, method, subjectId)
   })
 
   function handleSubmit(values, { setSubmitting, setErrors, setStatus }){
@@ -291,7 +296,7 @@ export function useSetNewSubject(url){
       mutate(transformedValues, {
         onSuccess: (data) => {
           setSubmitting(false);
-          navigate(url)
+          navigate(url+`/${data.id}/`)
         },
         onError: async (err) => {
           if (err?.code === 400 && err?.info) {

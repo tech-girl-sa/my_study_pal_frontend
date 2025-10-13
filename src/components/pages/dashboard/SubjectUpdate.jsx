@@ -6,14 +6,15 @@ import Input from "../../common/Input";
 import RoundBlueButton from "../../common/RoundBlueButton";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import {  useSetSubject } from "../../../utils/hooks";
+import { useGetSubject, useSetSubject } from "../../../utils/hooks";
 import create_subject from "../../../assets/robot_arm.png";
 
-const initialValues={
-  title: '',
-  description: '',
-  tags:''
-}
+const blankValues={
+    id:'',
+    title: '',
+    description: '',
+    tags:''
+  }
 const validationSchema=Yup.object({
     title: Yup.string()
     .max(150, 'Must be 150 characters or less')
@@ -25,18 +26,24 @@ const validationSchema=Yup.object({
 
 })
 
-export default function CreateSubject(){
-    const {handleSubmit} = useSetSubject("/dashboard/subjects")
-
+export default function SubjectUpdate(){
+    const {data:initialValues} = useGetSubject()
+    const {handleSubmit} = useSetSubject("/dashboard/subjects", "PUT")
+    if (initialValues){
+    initialValues.tags = initialValues.tags.toString()
+    }
+    console.log(initialValues)
     return  (<>
-    <PageHeader title="Create New Subject" subtitle="Add a new subject to your study plan."/>
+    <PageHeader title="Update Subject" subtitle="Update subject in your study plan."/>
     <div className={classes.mainLayout}>
        <Formik
-           initialValues={initialValues}
+           initialValues={initialValues || blankValues}
            validationSchema={validationSchema}
+           enableReinitialize={true}
            onSubmit={handleSubmit}
          >
     <CustomForm className={classes.createForm} >
+        <Input id="id" name="id" hidden/>
       <Input 
       label="📘 Title" type='text'
       id="title" name="title" placeholder="Enter subject title..." ></Input>
@@ -48,10 +55,10 @@ export default function CreateSubject(){
       id="tags" name="tags" placeholder="e.g. math, science, programming"></Input>
       
 
-      <RoundBlueButton type="submit"><FaCirclePlus /> Create Subject</RoundBlueButton>
+      <RoundBlueButton type="submit"><FaCirclePlus /> Update Subject</RoundBlueButton>
     </CustomForm>
     </Formik>
-    <img  className={classes.sideImage} src={create_subject} alt="Create subject"/>
+    <img  className={classes.sideImage} src={create_subject} alt="Update subject"/>
     </div>
     
   </>)

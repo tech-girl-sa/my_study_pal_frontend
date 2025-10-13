@@ -223,11 +223,16 @@ export async function getSubjectTags() {
     return Tags
 }
 
-export async function setNewSubject(subjectData) {
+export async function setSubject(subjectData, method="POST", subjectId='') {
     const keyMappings = {}
     const instanceName = 'subject'
-    const url = `http://localhost:8000/api/subjects/`
-    const subject = await instanceMappingWrapper(url, instanceName, keyMappings, subjectData, "POST")
+    let url = ""
+    if (method==="POST"){
+     url = `http://localhost:8000/api/subjects/`
+    } else {
+        url = `http://localhost:8000/api/subjects/${subjectId}/`
+    }
+    const subject = await instanceMappingWrapper(url, instanceName, keyMappings, subjectData, method)
     return subject
 }
 
