@@ -6,16 +6,16 @@ import Input from "../../common/Input";
 import RoundBlueButton from "../../common/RoundBlueButton";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import {  useGetSubjectChoices, useGetSubjects, useSetCourse, useSetSubject } from "../../../utils/hooks";
+import { useGetCourse, useGetSubject, useGetSubjects, useSetCourse, useSetSubject } from "../../../utils/hooks";
 import create_course from "../../../assets/create_course.png";
 import Select from "../../common/Select";
 
-const initialValues={
-  title: '',
-  description: '',
-  tags:'',
-  subject:''
-}
+const blankValues={
+    id:'',
+    title: '',
+    description: '',
+    tags:''
+  }
 const validationSchema=Yup.object({
     title: Yup.string()
     .max(150, 'Must be 150 characters or less')
@@ -24,24 +24,29 @@ const validationSchema=Yup.object({
     .max(3000, 'Must be 3000 characters or less'),
     tags: Yup.string()
     .max(300, 'Must be 300 characters or less'),
-    subject: Yup.number().integer().required('This field is required'),
+
 })
 
-export default function CreateCourse(){
+export default function CourseUpdate(){
     const {data:subjects} = useGetSubjects([])
-    console.log(subjects)
-    const subjectChoices=[
-        {key:"",label:"Select Subject"},
-        ...(subjects?.map(subject=>({key:subject.id, label:subject.title})) || [])   
-    ]
-    const {handleSubmit} = useSetCourse("/dashboard/courses")
-
+        console.log(subjects)
+        const subjectChoices=[
+            {key:"",label:"Select Subject"},
+            ...(subjects?.map(subject=>({key:subject.id, label:subject.title})) || [])   
+        ]
+    const {data:initialValues} = useGetCourse()
+    const {handleSubmit} = useSetCourse("/dashboard/courses", "PUT")
+    if (initialValues){
+    initialValues.tags = initialValues.tags.toString()
+    }
+    console.log(initialValues)
     return  (<>
-    <PageHeader title="Create New Course" subtitle="Add a new Course to your study plan."/>
+    <PageHeader title="Update course" subtitle="Update course in your study plan."/>
     <div className={classes.mainLayout}>
        <Formik
-           initialValues={initialValues}
+           initialValues={initialValues || blankValues}
            validationSchema={validationSchema}
+           enableReinitialize={true}
            onSubmit={handleSubmit}
          >
     <CustomForm className={classes.createForm} >
@@ -61,10 +66,10 @@ export default function CreateCourse(){
       id="tags" name="tags" placeholder="e.g. math, science, programming"></Input>
       
 
-      <RoundBlueButton type="submit"><FaCirclePlus /> Create Course</RoundBlueButton>
+      <RoundBlueButton type="submit"><FaCirclePlus /> Update Course</RoundBlueButton>
     </CustomForm>
     </Formik>
-    <img  className={classes.sideImage} src={create_course} alt="Create course"/>
+    <img  className={classes.sideImage} src={create_course} alt="Update course"/>
     </div>
     
   </>)
