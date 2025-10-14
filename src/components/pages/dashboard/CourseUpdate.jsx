@@ -29,7 +29,6 @@ const validationSchema=Yup.object({
 
 export default function CourseUpdate(){
     const {data:subjects} = useGetSubjects([])
-   )
         const subjectChoices=[
             {key:"",label:"Select Subject"},
             ...(subjects?.map(subject=>({key:subject.id, label:subject.title})) || [])   
