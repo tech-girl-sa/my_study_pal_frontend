@@ -29,7 +29,7 @@ const validationSchema=Yup.object({
 
 export default function CourseUpdate(){
     const {data:subjects} = useGetSubjects([])
-        console.log(subjects)
+   )
         const subjectChoices=[
             {key:"",label:"Select Subject"},
             ...(subjects?.map(subject=>({key:subject.id, label:subject.title})) || [])   
@@ -39,7 +39,7 @@ export default function CourseUpdate(){
     if (initialValues){
     initialValues.tags = initialValues.tags.toString()
     }
-    console.log(initialValues)
+  
     return  (<>
     <PageHeader title="Update course" subtitle="Update course in your study plan."/>
     <div className={classes.mainLayout}>

@@ -32,7 +32,7 @@ export default function SubjectUpdate(){
     if (initialValues){
     initialValues.tags = initialValues.tags.toString()
     }
-    console.log(initialValues)
+
     return  (<>
     <PageHeader title="Update Subject" subtitle="Update subject in your study plan."/>
     <div className={classes.mainLayout}>
