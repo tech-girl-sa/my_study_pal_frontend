@@ -236,6 +236,20 @@ export async function setSubject(subjectData, method="POST", subjectId='') {
     return subject
 }
 
+export async function setCourse(courseData, method="POST", CourseId='') {
+    const keyMappings = {}
+    const instanceName = 'course'
+    let url = ""
+    if (method==="POST"){
+     url = `http://localhost:8000/api/courses/`
+    } else {
+        url = `http://localhost:8000/api/courses/${CourseId}/`
+    }
+    const course = await instanceMappingWrapper(url, instanceName, keyMappings, courseData, method)
+    return course
+}
+
+
 
 export async function getSubject(subjectId) {
     const instanceName = 'subject'

@@ -25,7 +25,7 @@ export default function DashboardHome(){
  <Table headers={["Course Title", "Subject", "View Course"]}>
         {courses?.map(course=> (<tr id={course.id}>
           <td  className={classes.courseTitle}><a href="#">{course.title}</a></td>
-          <td>{course.subject}</td>
+          <td>{course.subject_title}</td>
           <td><NavLink to={`/dashboard/courses/${course.id}/${course.first_section_id}`} class="view-course-link">View Course</NavLink></td>
         </tr>))}
    </Table>

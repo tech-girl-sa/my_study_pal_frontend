@@ -24,6 +24,7 @@ import CourseDetails from './components/pages/dashboard/CourseDetails'
 import CreateSubject from './components/pages/dashboard/CreateSubject'
 import SubjectDetails from './components/pages/dashboard/SubjectDetails'
 import SubjectUpdate from './components/pages/dashboard/SubjectUpdate'
+import CreateCourse from './components/pages/dashboard/CreateCourse'
 
 
 const study_pal_router = createBrowserRouter(
@@ -54,6 +55,7 @@ const study_pal_router = createBrowserRouter(
             {path: "subjects/:subjectId", element:<SubjectDetails/>},
             {path: "subjects/:subjectId/update", element:<SubjectUpdate/>},
             {path: "courses", element:<Courses/>},
+            {path: "courses/create", element:<CreateCourse/>},
             {path: "courses/:courseId/:sectionId", element:<CourseDetails/>},
             {path: "documents", element:<Documents/>},
           ]

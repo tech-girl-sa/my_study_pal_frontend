@@ -39,7 +39,7 @@ const {data:tags} = useGetCoursesTags()
             <td  className={classes.courseTitle}><NavLink
               to={`/dashboard/courses/${course.id}/${course.first_section_id}`} >
                 {course.title}</NavLink></td>
-            <td>{course.subject}</td>
+            <td>{course.subject_title}</td>
             <td>{course.document_title}</td>
             <td>{new Date(course.created_at).toLocaleDateString("en-US", {
   year: "numeric",
