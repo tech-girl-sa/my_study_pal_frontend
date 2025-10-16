@@ -22,10 +22,12 @@ export default function Subjects(){
     <div className={classes.Page}>
     <PageHeader title="All Subjects" subtitle="Explore all the subjects in your study space."/>
    <Filters tags={tags} placeholder="Search subjects..." 
-   filterChoices={filterChoices} buttonText="Create New Subject"
+   filterChoices={filterChoices} 
+   buttonText="Create New Subject"
+    path="/dashboard/courses/create/"
    setFilters={setFilters}
    filters={filters}
-   path="create"
+
    />
    </div>
   <SubjectsGrid filters={filters}/>

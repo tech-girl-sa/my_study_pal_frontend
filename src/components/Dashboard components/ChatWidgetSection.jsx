@@ -4,6 +4,7 @@ import { FaFileCirclePlus } from "react-icons/fa6";
 import { FaComments } from "react-icons/fa";
 import classes from './ChatWidgetSection.module.css'
 import RoundBlueButton from "../common/RoundBlueButton";
+import { NavLink } from "react-router-dom";
 
 export default function ChatWidgetSection(){
     return <section className={classes.chatWidget}>
@@ -14,13 +15,13 @@ export default function ChatWidgetSection(){
     <ChatWidget/>
     <div className={`${classes.actionButtons} ${classes.center}`}>
     <RoundBlueButton>
-        <FaPlus /> New Subject
+        <FaPlus /><NavLink to="/dashboard/subjects/create/">New Subject</NavLink> 
       </RoundBlueButton>
       <RoundBlueButton>
-        <FaPlus /> New Course
+        <FaPlus /> <NavLink to="/dashboard/courses/create/"> New Course</NavLink>
       </RoundBlueButton>
       <RoundBlueButton>
-        <FaFileCirclePlus /> New Document
+        <FaFileCirclePlus /> <NavLink to="/dashboard/documents/">New Document</NavLink>
       </RoundBlueButton>
       <RoundBlueButton>
         <FaRocket /> New Quiz

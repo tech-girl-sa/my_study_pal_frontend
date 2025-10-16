@@ -31,7 +31,8 @@ const {data:tags} = useGetCoursesTags()
     <div className={classes.Page}>
     <PageHeader title="All Courses" subtitle="Explore all the courses in your study space."/>
    <Filters tags={tags} placeholder="Search courses..." 
-   filterChoices={filterChoices} buttonText="Create New Course" 
+   filterChoices={filterChoices} 
+   buttonText="Create New Course"  path="/dashboard/courses/create/"
    filters={filters} setFilters={setFilters}/>
    </div>
     <Table headers={["Course Title", "Subject", "Documents", "Created at" ,"View Course"]}>

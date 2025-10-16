@@ -36,12 +36,15 @@ export default function SubjectDetails(){
     return <>
     <PageHeader title={subject?.title} subtitle={subject?.description}/>
     <div className={classes.actionButtons}>
-            <RoundBlueButton><FaPen /> Edit Subject</RoundBlueButton>
+            <RoundBlueButton><FaPen /> 
+            <NavLink to={`/dashboard/subjects/${subjectId}/`}>Edit Subject</NavLink>
+            </RoundBlueButton>
             <RoundBlueButton className={classes.archiveBtn}><FaBoxArchive /> Archive Subject</RoundBlueButton>
             </div>
     <Section title="Courses" icon="book">
 
-    <Filters tags={tags} placeholder="Search courses..."  buttonText="Create New Course" 
+    <Filters tags={tags} placeholder="Search courses..."  
+    buttonText="Create New Course"  path="/dashboard/courses/create/"
     filters={Coursefilters} setFilters={setCourseFilters} filterChoices={[]}/>
     <Table headers={["Course Title", "Documents", "Created at" ,"View Course"]}>
           {courses?.map(course=> (<tr id={course.id}>

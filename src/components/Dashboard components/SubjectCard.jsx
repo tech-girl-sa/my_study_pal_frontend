@@ -1,4 +1,5 @@
 
+import { NavLink } from 'react-router-dom';
 import classes from './SubjectCard.module.css';
 import { FaFileAlt, FaPencilAlt } from "react-icons/fa";
 
@@ -24,7 +25,7 @@ export default function SubjectCard({subject}){
                 <FaPencilAlt /> {subject.quizzes_count} Quizzes
               </a>
             </div>
-            <a href="#">View All Courses</a>
+            <NavLink to={`/dashboard/subjects/${subject.id}`}>View All Courses</NavLink>
           </div>
         </div>
     );

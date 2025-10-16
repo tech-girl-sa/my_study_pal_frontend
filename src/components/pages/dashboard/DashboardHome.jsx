@@ -15,13 +15,13 @@ export default function DashboardHome(){
     return <>
     
     <ChatWidgetSection/>
-    <Section title="Recent Subjects" icon="book">
+    <Section title="Recent Subjects" icon="book" url="/dashboard/subjects">
   <div className={classes.cardContainer}>
     {subjects?.map(subject=><SubjectCard subject={subject} key={subject.id}/>)}
     </div>
   </Section >
   
-  <Section title="Recent Courses" icon="copy" >
+  <Section title="Recent Courses" icon="copy"  url="/dashboard/courses" >
  
  <Table headers={["Course Title", "Subject", "View Course"]}>
         {courses?.map(course=> (<tr id={course.id}>
