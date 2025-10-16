@@ -6,7 +6,7 @@ import Input from "../../common/Input";
 import RoundBlueButton from "../../common/RoundBlueButton";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { useGetCourse, useGetSubject, useGetSubjects, useSetCourse, useSetSubject } from "../../../utils/hooks";
+import { useGetCourse, useGetSubjects, useSetCourse } from "../../../utils/hooks";
 import create_course from "../../../assets/create_course.png";
 import Select from "../../common/Select";
 
