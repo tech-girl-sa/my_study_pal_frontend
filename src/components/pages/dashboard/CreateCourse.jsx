@@ -28,7 +28,7 @@ const validationSchema=Yup.object({
 })
 
 export default function CreateCourse(){
-    const {data:subjects} = useGetSubjects([])
+    const {data:subjects} = useGetSubjects()
 
     const subjectChoices=[
         {key:"",label:"Select Subject"},

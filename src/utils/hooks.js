@@ -202,7 +202,7 @@ export function useGetSection(){
     }
 }
 
-export function useGetCourses(filters){
+export function useGetCourses(filters=[]){
   const {data, isLoading, error} = useQuery({
     queryKey: ["courses",filters],
     queryFn: () => getCourses(filters),
@@ -217,7 +217,7 @@ export function useGetCourses(filters){
     }
 }
 
-export function useGetSubjects(filters){
+export function useGetSubjects(filters=[]){
   const {data, isLoading, error} = useQuery({
     queryKey: ["subjects",filters],
     queryFn: () => getSubjects(filters),
