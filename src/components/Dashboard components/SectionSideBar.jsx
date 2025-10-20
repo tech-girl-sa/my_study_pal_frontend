@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useGetSections } from "../../utils/hooks";
 import Pagination from "../common/Pagination";
 import classes from "./SectionSideBar.module.css";
-import { FaTrash, FaPen } from "react-icons/fa";
+import { FaTrash, FaPen, FaPlus} from "react-icons/fa";
 
 
 export default function SectionSideBar({course}){
@@ -15,7 +15,8 @@ export default function SectionSideBar({course}){
       <h4>Current Course:</h4>
       <h3 className={classes.title}>  {course?.title}</h3>
       </div>
-      <button ><FaPen/> Edit Course</button>
+      <button ><FaPlus/> <NavLink to={`/dashboard/courses/${course?.id}/create_section`}>Create Section </NavLink></button>
+      <button ><FaPen/><NavLink to={`/dashboard/courses/${course?.id}/update`}> Edit Course</NavLink></button>
       <button className={classes.archiveBtn} ><FaTrash/> Archive Course</button>
     </div>
     <ul className={classes.tocList}>

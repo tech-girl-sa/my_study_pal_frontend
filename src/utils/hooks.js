@@ -3,7 +3,7 @@ import { createNewRegistration, getCourse, getCourses,
    getCourseTags, getDocument, getDocumentFiltersChoices, 
    getDocuments, getMessages, getSection, getSections, 
    getSubject, getSubjectChoices, getSubjects, getSubjectTags, 
-   sendLoginRequest, setCourse, setSubject, setUserInfo, setUserMessage } from "./http";
+   sendLoginRequest, setCourse, setSection, setSubject, setUserInfo, setUserMessage } from "./http";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { setAuthToken } from "./authentication";
 
@@ -424,5 +424,51 @@ export function useGetDocumentFiltersChoices(){
       data,
       isLoading,
       error
+    }
+}
+
+
+export function useSetSection(url, method="POST"){
+  const {sectionId, courseId} =  useParams();
+  const navigate = useNavigate();
+  const {mutate, isPending, isError, error} = useMutation({
+    mutationFn: (sectionData)=> {
+      if (method==="POST"){sectionData.course = courseId}
+      setSection(sectionData, method, sectionId)
+    }
+  })
+
+  function handleSubmit(values, { setSubmitting, setErrors, setStatus }){
+      //transform tags to list
+      const transformedValues = {
+        ...values,
+        tags: values.tags
+          .split(",")
+          .map((t) => t.trim())
+          .filter(Boolean),
+      };
+
+      mutate(transformedValues, {
+        onSuccess: (data) => {
+          setSubmitting(false);
+          navigate(url+`/${courseId}/${data.id}/`)
+        },
+        onError: async (err) => {
+          if (err?.code === 400 && err?.info) {
+            const fieldErrors = Object.fromEntries(
+              Object.entries(err.info).map(([key, value]) => [key, value[0]])
+            );
+            setErrors(fieldErrors); 
+          }else{setStatus(err.message)
+          }
+          setSubmitting(false);
+        },
+      });
+    }
+    return {
+      handleSubmit,
+      isPending,
+      isError,
+      error,
     }
 }

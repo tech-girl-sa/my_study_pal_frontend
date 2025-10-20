@@ -281,3 +281,16 @@ export async function getDocumentFiltersChoices() {
     const choices = await getData(url, instanceName)
     return choices
 }
+
+export async function setSection(sectionData, method="POST", sectionId='') {
+    const keyMappings = {}
+    const instanceName = 'section'
+    let url = ""
+    if (method==="POST"){
+     url = `http://localhost:8000/api/sections/`
+    } else {
+        url = `http://localhost:8000/api/sections/${sectionId}/`
+    }
+    const subject = await instanceMappingWrapper(url, instanceName, keyMappings, sectionData, method)
+    return subject
+}
