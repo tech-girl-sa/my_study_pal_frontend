@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { useGetCourse, useGetSection } from "../../../utils/hooks";
 import RoundBlueButton from "../../common/RoundBlueButton";
 import ChatSection from "../../Dashboard components/ChatSection";
@@ -21,7 +22,7 @@ export default function CourseDetails(){
           <span className={classes.currentSection}>Section: <strong>{section?.title}</strong></span>
         </div>
         <div className={classes.courseActions}>
-        <RoundBlueButton><FaPen /> Edit Section</RoundBlueButton>
+        <RoundBlueButton><FaPen /><NavLink to={`/dashboard/courses/${course?.id}/${section?.id}/update`}> Edit Section </NavLink></RoundBlueButton>
         <RoundBlueButton><FaUpload /> Upload Document</RoundBlueButton>
         <RoundBlueButton className={classes.archiveBtn}><FaBoxArchive /> Archive Section</RoundBlueButton>
         <RoundBlueButton><FaPlus /> Create Quiz</RoundBlueButton>

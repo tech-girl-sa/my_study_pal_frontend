@@ -291,6 +291,6 @@ export async function setSection(sectionData, method="POST", sectionId='') {
     } else {
         url = `http://localhost:8000/api/sections/${sectionId}/`
     }
-    const subject = await instanceMappingWrapper(url, instanceName, keyMappings, sectionData, method)
-    return subject
+    const section = await instanceMappingWrapper(url, instanceName, keyMappings, sectionData, method)
+    return section
 }

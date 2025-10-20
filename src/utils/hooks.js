@@ -434,23 +434,16 @@ export function useSetSection(url, method="POST"){
   const {mutate, isPending, isError, error} = useMutation({
     mutationFn: (sectionData)=> {
       if (method==="POST"){sectionData.course = courseId}
-      setSection(sectionData, method, sectionId)
+      return setSection(sectionData, method, sectionId)
     }
   })
 
   function handleSubmit(values, { setSubmitting, setErrors, setStatus }){
-      //transform tags to list
-      const transformedValues = {
-        ...values,
-        tags: values.tags
-          .split(",")
-          .map((t) => t.trim())
-          .filter(Boolean),
-      };
-
-      mutate(transformedValues, {
+ 
+      mutate(values, {
         onSuccess: (data) => {
           setSubmitting(false);
+          console.log(data)
           navigate(url+`/${courseId}/${data.id}/`)
         },
         onError: async (err) => {
