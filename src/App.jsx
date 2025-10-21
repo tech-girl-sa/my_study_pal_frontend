@@ -28,6 +28,7 @@ import CreateCourse from './components/pages/dashboard/CreateCourse'
 import CourseUpdate from './components/pages/dashboard/CourseUpdate'
 import CreateSection from './components/pages/dashboard/CreateSection'
 import SectionUpdate from './components/pages/dashboard/SectionUpdate'
+import Quizzes from './components/pages/dashboard/quizzes'
 
 
 const study_pal_router = createBrowserRouter(
@@ -64,6 +65,7 @@ const study_pal_router = createBrowserRouter(
             {path: "courses/:courseId/create_section", element:<CreateSection/>},
             {path: "courses/:courseId/:sectionId/update", element:<SectionUpdate/>},
             {path: "documents", element:<Documents/>},
+            {path: "quizzes", element:<Quizzes/>},
           ]
         },
         

@@ -12,10 +12,13 @@ import { FaPen, FaBoxArchive} from "react-icons/fa6";
 import documentClasses from "./Documents.module.css"
 import classes from "./SubjectDetails.module.css"
 import RoundBlueButton from "../../common/RoundBlueButton";
+import { useModalUtil } from "../../../utils/utilsHooks";
+import ConfirmDeleteModal from "../../common/ConfirmDeleteModal";
 
 
 
 export default function SubjectDetails(){
+  const {isModalOpen, openModal, closeModal} = useModalUtil()
   const {subjectId}= useParams()
   const [Coursefilters, setCourseFilters] =  useState({
     search:"",
@@ -39,7 +42,7 @@ export default function SubjectDetails(){
             <RoundBlueButton><FaPen /> 
             <NavLink to={`/dashboard/subjects/${subjectId}/`}>Edit Subject</NavLink>
             </RoundBlueButton>
-            <RoundBlueButton className={classes.archiveBtn}><FaBoxArchive /> Archive Subject</RoundBlueButton>
+            <RoundBlueButton className={classes.archiveBtn} onClick={openModal}><FaTrash/> Delete Subject</RoundBlueButton>
             </div>
     <Section title="Courses" icon="book">
 
@@ -91,7 +94,8 @@ export default function SubjectDetails(){
               </tr>))}
          </Table>
     
-     <Pagination pagesNbr={2}></Pagination>            
+     <Pagination pagesNbr={2}></Pagination>   
+     <ConfirmDeleteModal isOpen={isModalOpen} onClose={closeModal} />         
     </Section>
     </>
 }

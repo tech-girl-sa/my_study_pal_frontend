@@ -4,11 +4,14 @@ import RoundBlueButton from "../../common/RoundBlueButton";
 import ChatSection from "../../Dashboard components/ChatSection";
 import SectionSideBar from "../../Dashboard components/SectionSideBar";
 import classes from "./CourseDetails.module.css"
-import { FaPen, FaUpload, FaBoxArchive, FaPlus } from "react-icons/fa6";
+import { FaPen, FaUpload, FaTrash, FaPlus } from "react-icons/fa6";
+import { useModalUtil } from "../../../utils/utilsHooks";
+import ConfirmDeleteModal from "../../common/ConfirmDeleteModal";
 
 
 
 export default function CourseDetails(){
+  const {isModalOpen, openModal, closeModal} = useModalUtil()
   const {data:course} = useGetCourse()
   const {data:section} = useGetSection()
   
@@ -24,7 +27,7 @@ export default function CourseDetails(){
         <div className={classes.courseActions}>
         <RoundBlueButton><FaPen /><NavLink to={`/dashboard/courses/${course?.id}/${section?.id}/update`}> Edit Section </NavLink></RoundBlueButton>
         <RoundBlueButton><FaUpload /> Upload Document</RoundBlueButton>
-        <RoundBlueButton className={classes.archiveBtn}><FaBoxArchive /> Archive Section</RoundBlueButton>
+        <RoundBlueButton className={classes.archiveBtn} onClick={openModal}><FaTrash/> Delete Section</RoundBlueButton>
         <RoundBlueButton><FaPlus /> Create Quiz</RoundBlueButton>
         </div>
       </div>
@@ -34,6 +37,7 @@ export default function CourseDetails(){
        </div>
 
   <SectionSideBar course={course}/>
+  <ConfirmDeleteModal isOpen={isModalOpen} onClose={closeModal} />      
  
   </div>
 }

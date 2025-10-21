@@ -8,9 +8,12 @@ import Table from "../../common/Table.jsx";
 import Filters from "../../common/filters.jsx";
 import classes from "./Documents.module.css";
 import { FaTrash } from "react-icons/fa";
+import ConfirmDeleteModal from "../../common/ConfirmDeleteModal.jsx";
+import { useModalUtil } from "../../../utils/utilsHooks.js";
 
 
 export default function Documents(){
+  const {isModalOpen, openModal, closeModal} = useModalUtil()
   const {data:filtersChoices} = useGetDocumentFiltersChoices()
     const filterChoices=[
       { filterKey:"subject",
@@ -33,7 +36,6 @@ export default function Documents(){
       })
     const {data:documents}= useGetDocuments(filters)
    
- 
 
     return <>
     <PageHeader title="Documents" subtitle="Explore all the documents in your study space."></PageHeader>
@@ -67,12 +69,13 @@ export default function Documents(){
                                                           minute: "2-digit",
                                                         })}
             </td>
-            <td><button className={classes.deleteBtn}><FaTrash/></button></td>
+            <td><button className={classes.deleteBtn} onClick={openModal}><FaTrash/></button></td>
           </tr>))}
      </Table>
 
  <Pagination pagesNbr={2}></Pagination>
  </Section>
+ <ConfirmDeleteModal isOpen={isModalOpen} onClose={closeModal} />
   </>
 
 }
