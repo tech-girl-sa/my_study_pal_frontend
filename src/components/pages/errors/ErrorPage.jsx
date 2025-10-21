@@ -17,7 +17,13 @@ export default function ErrorPage(){
     }, []);
 
     if (error?.status === 404) {
-        return <Error404 />;
+        return(
+        <div className={classes.errorPage}>
+        <Error404 />;
+        </div>)
       }
-    return <Error500 />;
+    return (
+    <div className={classes.errorPage}>
+    <Error500 />
+    </div>);
 }
