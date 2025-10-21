@@ -1,7 +1,9 @@
+import { NavLink } from 'react-router-dom';
 import classes from './SubjectDetailsCard.module.css'
 import { FaArrowRight } from "react-icons/fa"; 
 
 export default function SubjectDetailsCard({subject}){
+
    return <div className={classes.subjectCard}>
    <div className={classes.subjectInfo}>
      <h3 className={classes.subjectName}>{subject.title}</h3>
@@ -15,6 +17,6 @@ export default function SubjectDetailsCard({subject}){
        
      </div>
    </div>
-    <a href={subject.link} className={classes.subjectAction}>View Details <FaArrowRight className={classes.icon}/></a>
+    <NavLink to={`/dashboard/subjects/${subject.id}`} className={classes.subjectAction}>View Details <FaArrowRight className={classes.icon}/></NavLink>
  </div>
 }
