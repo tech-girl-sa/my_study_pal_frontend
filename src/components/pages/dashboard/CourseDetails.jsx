@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useGetCourse, useGetSection } from "../../../utils/hooks";
+import { useDeleteSection, useGetCourse, useGetSection } from "../../../utils/hooks";
 import RoundBlueButton from "../../common/RoundBlueButton";
 import ChatSection from "../../Dashboard components/ChatSection";
 import SectionSideBar from "../../Dashboard components/SectionSideBar";
@@ -14,6 +14,10 @@ export default function CourseDetails(){
   const {isModalOpen, instanceId, openModal, closeModal} = useModalUtil()
   const {data:course} = useGetCourse()
   const {data:section} = useGetSection()
+  const {mutate:deleteSection, isPending, isError, error}= useDeleteSection(
+    `/dashboard/courses/`, 
+    instanceId, closeModal)
+  
   
     return <div className={classes.coursePage}>
 
@@ -37,7 +41,7 @@ export default function CourseDetails(){
        </div>
 
   <SectionSideBar course={course}/>
-  <ConfirmDeleteModal isOpen={isModalOpen} onClose={closeModal} />      
+  <ConfirmDeleteModal isOpen={isModalOpen} onClose={closeModal} onConfirm={deleteSection}/>      
  
   </div>
 }
