@@ -1,5 +1,5 @@
 import { NavLink, useParams } from "react-router-dom";
-import {  useGetCourses, useGetCoursesTags, useGetDocuments, useGetSubject } from "../../../utils/hooks"
+import {  useDeleteSubject, useGetCourses, useGetCoursesTags, useGetDocuments, useGetSubject } from "../../../utils/hooks"
 import Filters from "../../common/filters";
 import PageHeader from "../../common/PageHeader"
 import Pagination from "../../common/Pagination";
@@ -20,6 +20,9 @@ import ConfirmDeleteModal from "../../common/ConfirmDeleteModal";
 export default function SubjectDetails(){
   const {isModalOpen, instanceId, openModal, closeModal} = useModalUtil()
   const {subjectId}= useParams()
+  const {mutate:deleteSubject, isPending, isError, error}= useDeleteSubject(
+      `/dashboard/subjects/`, 
+      instanceId, closeModal)
   const [Coursefilters, setCourseFilters] =  useState({
     search:"",
     ordering:"",
@@ -95,7 +98,7 @@ export default function SubjectDetails(){
          </Table>
     
      <Pagination pagesNbr={2}></Pagination>   
-     <ConfirmDeleteModal isOpen={isModalOpen} onClose={closeModal} />         
+     <ConfirmDeleteModal isOpen={isModalOpen} onClose={closeModal} onConfirm={deleteSubject} />         
     </Section>
     </>
 }
