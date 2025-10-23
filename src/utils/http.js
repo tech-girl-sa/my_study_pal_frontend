@@ -321,3 +321,11 @@ export async function deleteDocumentApi( documentId) {
     const document = await instanceMappingWrapper(url, instanceName, keyMappings, {}, "DELETE")
     return document
 }
+
+export async function deleteCourseApi( courseId) {
+    const keyMappings = {}
+    const instanceName = 'course'
+    let url = `http://localhost:8000/api/courses/${courseId}/`
+    const course = await instanceMappingWrapper(url, instanceName, keyMappings, {}, "DELETE")
+    return course
+}

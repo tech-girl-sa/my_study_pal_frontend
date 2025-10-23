@@ -16,7 +16,7 @@ export default function Documents(){
   const {isModalOpen, instanceId, openModal, closeModal} = useModalUtil()
   const {data:filtersChoices} = useGetDocumentFiltersChoices()
   const {mutate:deleteDocument, isPending, isError, error}= useDeleteDocument('/dashboard/documents', instanceId, closeModal)
-  console.log(instanceId)
+  
     const filterChoices=[
       { filterKey:"subject",
         filterChoices:[

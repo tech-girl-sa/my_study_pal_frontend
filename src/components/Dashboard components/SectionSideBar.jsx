@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useGetSections } from "../../utils/hooks";
+import { useDeleteCourse,  useGetSections } from "../../utils/hooks";
 import Pagination from "../common/Pagination";
 import classes from "./SectionSideBar.module.css";
 import { FaTrash, FaPen, FaPlus} from "react-icons/fa";
@@ -10,6 +10,8 @@ import { useModalUtil } from "../../utils/utilsHooks";
 export default function SectionSideBar({course}){
     const {isModalOpen, instanceId, openModal, closeModal} = useModalUtil()
     const {data:sections, isLoading, error} = useGetSections()
+    const {mutate:deleteCourse, isPending, isError}= useDeleteCourse('/dashboard/courses', instanceId, closeModal)
+    
     
     return <aside className={classes.rightSidebar}>
     <div className={classes.sidebarHeader}>
@@ -29,6 +31,6 @@ export default function SectionSideBar({course}){
     <div className={classes.sidebarSeparator}></div>
   
    <Pagination className={classes.sidebarPagination} pagesNbr={2}/>
-   <ConfirmDeleteModal isOpen={isModalOpen} onClose={closeModal} />  
+   <ConfirmDeleteModal isOpen={isModalOpen} onClose={closeModal}  onConfirm={deleteCourse}/>  
   </aside>
 }
