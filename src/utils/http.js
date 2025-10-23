@@ -7,23 +7,42 @@ export async function createNewInstance(url, data, instanceName, method='POST', 
         headers['Authorization']= `Token ${getAuthToken()}`;
     }
     headers['Content-Type']= 'application/json'
-    const response = await fetch(url, {
+
+    let response;
+
+    response = await fetch(url, {
         method: method,
-        body: JSON.stringify(data),
         headers: headers,
-        });
-        
+        body: data ? JSON.stringify(data) : undefined,
+    });
+
     if (!response.ok){
-        const errorMsg = instanceName === "loginCred" ? 'An error occured while logging in': 
-        `An error occured while creating new ${instanceName}`
+        const errorMsg = instanceName === "loginCred" 
+            ? 'An error occured while logging in'
+            : `An error occured while creating new ${instanceName}`;
     
         const error = new Error(errorMsg);
         error.code = response.status;
-        error.info = await response.json();
+
+        try {
+            error.info = await response.json();
+        } catch (e) {
+            error.info = {};
+        }
+
         throw error;
     }
-    
-    const instance = await response.json();
+
+    // Handle empty response
+    if (response.status === 204) return null; 
+
+    let instance;
+    try {
+        instance = await response.json();
+    } catch (e) {
+        instance = null; 
+    }
+
     return instance;
 }
 
@@ -293,4 +312,12 @@ export async function setSection(sectionData, method="POST", sectionId='') {
     }
     const section = await instanceMappingWrapper(url, instanceName, keyMappings, sectionData, method)
     return section
+}
+
+export async function deleteDocumentApi( documentId) {
+    const keyMappings = {}
+    const instanceName = 'document'
+    let url = `http://localhost:8000/api/documents/${documentId}/`
+    const document = await instanceMappingWrapper(url, instanceName, keyMappings, {}, "DELETE")
+    return document
 }

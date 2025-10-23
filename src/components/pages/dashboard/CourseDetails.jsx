@@ -11,7 +11,7 @@ import ConfirmDeleteModal from "../../common/ConfirmDeleteModal";
 
 
 export default function CourseDetails(){
-  const {isModalOpen, openModal, closeModal} = useModalUtil()
+  const {isModalOpen, instanceId, openModal, closeModal} = useModalUtil()
   const {data:course} = useGetCourse()
   const {data:section} = useGetSection()
   
@@ -27,7 +27,7 @@ export default function CourseDetails(){
         <div className={classes.courseActions}>
         <RoundBlueButton><FaPen /><NavLink to={`/dashboard/courses/${course?.id}/${section?.id}/update`}> Edit Section </NavLink></RoundBlueButton>
         <RoundBlueButton><FaUpload /> Upload Document</RoundBlueButton>
-        <RoundBlueButton className={classes.archiveBtn} onClick={openModal}><FaTrash/> Delete Section</RoundBlueButton>
+        <RoundBlueButton className={classes.archiveBtn} id={section?.id} onClick={openModal}><FaTrash/> Delete Section</RoundBlueButton>
         <RoundBlueButton><FaPlus /> Create Quiz</RoundBlueButton>
         </div>
       </div>

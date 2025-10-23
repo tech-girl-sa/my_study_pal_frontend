@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { createNewRegistration, getCourse, getCourses,
+import { createNewRegistration, deleteDocumentApi, getCourse, getCourses,
    getCourseTags, getDocument, getDocumentFiltersChoices, 
    getDocuments, getMessages, getSection, getSections, 
    getSubject, getSubjectChoices, getSubjects, getSubjectTags, 
@@ -464,4 +464,29 @@ export function useSetSection(url, method="POST"){
       isError,
       error,
     }
+}
+
+
+export function useDeleteDocument(url, id, closeModal) {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending, isError, error } = useMutation({
+    mutationFn: () => deleteDocumentApi(id), // your actual API call
+    onSuccess: () => {
+      queryClient.invalidateQueries(["documents"]);
+      closeModal();
+      navigate(url);
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
+
+  return {
+    mutate,
+    isPending,
+    isError,
+    error,
+  };
 }

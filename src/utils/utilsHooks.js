@@ -3,8 +3,11 @@ import { useState } from "react";
 
 export function useModalUtil(){
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    function openModal(){
+    const [instanceId, setInstanceId] = useState(false);
+    
+    function openModal(event){
+        const id = event.currentTarget.id;
+        setInstanceId(id)
         setIsModalOpen((isOpen)=>true)
     }
   
@@ -14,6 +17,7 @@ export function useModalUtil(){
   
       return {
         isModalOpen,
+        instanceId,
         openModal,
         closeModal
       }

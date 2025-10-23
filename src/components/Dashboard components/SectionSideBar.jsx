@@ -8,9 +8,9 @@ import { useModalUtil } from "../../utils/utilsHooks";
 
 
 export default function SectionSideBar({course}){
-    const {isModalOpen, openModal, closeModal} = useModalUtil()
+    const {isModalOpen, instanceId, openModal, closeModal} = useModalUtil()
     const {data:sections, isLoading, error} = useGetSections()
-
+    
     return <aside className={classes.rightSidebar}>
     <div className={classes.sidebarHeader}>
       <div>
@@ -19,7 +19,7 @@ export default function SectionSideBar({course}){
       </div>
       <button className={classes.rightSidebarButton}><FaPlus/> <NavLink to={`/dashboard/courses/${course?.id}/create_section`}>Create Section </NavLink></button>
       <button className={classes.rightSidebarButton}><FaPen/><NavLink to={`/dashboard/courses/${course?.id}/update`}> Edit Course</NavLink></button>
-      <button className={`${classes.archiveBtn} ${classes.rightSidebarButton}`} onClick={openModal} ><FaTrash/> Delete Course</button>
+      <button className={`${classes.archiveBtn} ${classes.rightSidebarButton}`} onClick={openModal} id={course?.id}><FaTrash/> Delete Course</button>
     </div>
     <ul className={classes.tocList}>
       {sections?.map(section=><li><NavLink to={`/dashboard/courses/${section.course}/${section.id}`}>{section.title}</NavLink></li>)}

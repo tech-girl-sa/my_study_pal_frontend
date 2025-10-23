@@ -18,7 +18,7 @@ import ConfirmDeleteModal from "../../common/ConfirmDeleteModal";
 
 
 export default function SubjectDetails(){
-  const {isModalOpen, openModal, closeModal} = useModalUtil()
+  const {isModalOpen, instanceId, openModal, closeModal} = useModalUtil()
   const {subjectId}= useParams()
   const [Coursefilters, setCourseFilters] =  useState({
     search:"",
@@ -42,7 +42,7 @@ export default function SubjectDetails(){
             <RoundBlueButton><FaPen /> 
             <NavLink to={`/dashboard/subjects/${subjectId}/`}>Edit Subject</NavLink>
             </RoundBlueButton>
-            <RoundBlueButton className={classes.archiveBtn} onClick={openModal}><FaTrash/> Delete Subject</RoundBlueButton>
+            <RoundBlueButton className={classes.archiveBtn} onClick={openModal} id={subject?.id}><FaTrash/> Delete Subject</RoundBlueButton>
             </div>
     <Section title="Courses" icon="book">
 

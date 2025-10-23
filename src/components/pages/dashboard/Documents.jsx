@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGetDocumentFiltersChoices, useGetDocuments } from "../../../utils/hooks.js";
+import { useDeleteDocument, useGetDocumentFiltersChoices, useGetDocuments } from "../../../utils/hooks.js";
 import FileUpload from "../../common/FileUpload.jsx";
 import PageHeader from "../../common/PageHeader";
 import Pagination from "../../common/Pagination";
@@ -13,8 +13,10 @@ import { useModalUtil } from "../../../utils/utilsHooks.js";
 
 
 export default function Documents(){
-  const {isModalOpen, openModal, closeModal} = useModalUtil()
+  const {isModalOpen, instanceId, openModal, closeModal} = useModalUtil()
   const {data:filtersChoices} = useGetDocumentFiltersChoices()
+  const {mutate:deleteDocument, isPending, isError, error}= useDeleteDocument('/dashboard/documents', instanceId, closeModal)
+  console.log(instanceId)
     const filterChoices=[
       { filterKey:"subject",
         filterChoices:[
@@ -69,13 +71,13 @@ export default function Documents(){
                                                           minute: "2-digit",
                                                         })}
             </td>
-            <td><button className={classes.deleteBtn} onClick={openModal}><FaTrash/></button></td>
+            <td><button className={classes.deleteBtn} onClick={openModal} id={document?.id}><FaTrash/></button></td>
           </tr>))}
      </Table>
 
  <Pagination pagesNbr={2}></Pagination>
  </Section>
- <ConfirmDeleteModal isOpen={isModalOpen} onClose={closeModal} />
+ <ConfirmDeleteModal isOpen={isModalOpen} onClose={closeModal} onConfirm={deleteDocument} />
   </>
 
 }
