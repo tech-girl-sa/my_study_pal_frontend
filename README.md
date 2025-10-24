@@ -44,3 +44,7 @@ The **StudyPal Frontend** is a React-based web application designed to provide s
 ### Run the App
 ```npm run dev```
 Then open http://localhost:5173 in your browser.
+
+### Run the Backend app
+
+found in [this separate repo](https://github.com/tech-girl-sa/my_study_pal).
