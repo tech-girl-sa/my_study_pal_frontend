@@ -2,6 +2,8 @@
 
 The **StudyPal Frontend** is a React-based web application designed to provide students with an intelligent and interactive learning platform. It offers tools for document management, AI-assisted question answering, course chat sections, and adaptive quizzes — all within a modern, intuitive interface.
 
+![StudyPal Logo](./src/assets/logo.png)
+
 ---
 
 ## 🚀 Features
