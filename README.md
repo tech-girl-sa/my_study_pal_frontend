@@ -36,7 +36,7 @@ The **StudyPal Frontend** is a React-based web application designed to provide s
 ## ⚙️ Setup Instructions
 
 ###  Clone the Repository
-```git clone https://github.com/yourusername/studypal-frontend.git```
+```git clone https://github.com/tech-girl-sa/my_study_pal_frontend.git```
 
 ### Install Dependencies
 ```npm install```
