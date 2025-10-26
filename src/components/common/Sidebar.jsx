@@ -12,7 +12,7 @@ export default function Sidebar(){
       <NavLink to="/dashboard/courses" className={assignClass}><FaCopy/> Courses</NavLink>
       <NavLink to="/dashboard/documents" className={assignClass}><FaFolderOpen/> Documents</NavLink>
       <a href="/dashboard/quizzes" className={assignClass}><FaPenNib/> Quizzes</a>
-      <a href="#" className={assignClass}><FaCog/>Settings</a>
+      <a href="/dashboard/settings" className={assignClass}><FaCog/>Settings</a>
     </nav>
     <div className={classes.sidebarFooter}>© 2025 Study Pal</div>
   </aside>

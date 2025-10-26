@@ -345,3 +345,35 @@ export async function deleteSubjectApi( subjectId) {
     const subject = await instanceMappingWrapper(url, instanceName, keyMappings, {}, "DELETE")
     return subject
 }
+
+export async function getSettings() {
+    const instanceName = 'settings'
+    const url = `http://localhost:8000/api/settings/`
+    const settings = await getData(url, instanceName)
+    return settings
+}
+
+export async function getLanguageChoices() {
+    const instanceName = 'LanguageChoices'
+    const url = `http://localhost:8000/api/settings/language_choices/`
+    const choices = await getData(url, instanceName)
+    return choices
+}
+
+export async function getAiModelChoices() {
+    const instanceName = 'LanguageChoices'
+    const url = `http://localhost:8000/api/settings/ai_model_choices/`
+    const choices = await getData(url, instanceName)
+    return choices
+}
+
+export async function setSetting(settingsData) {
+    const keyMappings = {
+        agentModel: 'ai_model',
+        language: 'translation_language'
+    }
+    const instanceName = 'settings'
+    const url = `http://localhost:8000/api/settings/`
+    const userInfo = await instanceMappingWrapper(url, instanceName, keyMappings, settingsData, "POST")
+    return userInfo
+}

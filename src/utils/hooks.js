@@ -1,9 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { createNewRegistration, deleteCourseApi, deleteDocumentApi, deleteSectionApi, deleteSubjectApi, getCourse, getCourses,
+import { createNewRegistration, deleteCourseApi, deleteDocumentApi, deleteSectionApi, deleteSubjectApi, getAiModelChoices, getCourse, getCourses,
    getCourseTags, getDocument, getDocumentFiltersChoices, 
-   getDocuments, getMessages, getSection, getSections, 
+   getDocuments, getLanguageChoices, getMessages, getSection, getSections, 
+   getSettings, 
    getSubject, getSubjectChoices, getSubjects, getSubjectTags, 
-   sendLoginRequest, setCourse, setSection, setSubject, setUserInfo, setUserMessage } from "./http";
+   sendLoginRequest, setCourse, setSection, setSetting, setSubject, setUserInfo, setUserMessage } from "./http";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { setAuthToken } from "./authentication";
 
@@ -562,4 +563,79 @@ export function useDeleteSubject(url, id, closeModal) {
     isError,
     error,
   };
+}
+
+export function useGetSettings(){
+  const {data, isLoading, error} = useQuery({
+    queryKey: "settings",
+    queryFn: () => getSettings(),
+    refetchOnMount: "always",
+    staleTime: 0,
+  })
+
+    return {
+      data,
+      isLoading,
+      error
+    }
+}
+
+export function useGetLanguageChoices(){
+  const {data, isLoading, error} = useQuery({
+    queryKey: "languageChoices",
+    queryFn: () => getLanguageChoices(),
+    refetchOnMount: "always",
+    staleTime: 0,
+  })
+
+    return {
+      data,
+      isLoading,
+      error
+    }
+}
+
+export function useGetAiModelChoices(){
+  const {data, isLoading, error} = useQuery({
+    queryKey: "aiModelChoices",
+    queryFn: () => getAiModelChoices(),
+    refetchOnMount: "always",
+    staleTime: 0,
+  })
+
+    return {
+      data,
+      isLoading,
+      error
+    }
+}
+
+export function useSetSettings(url){
+  const {mutate, isPending, isError, error} = useMutation({
+    mutationFn: setSetting
+  })
+
+  function handleSubmit(values, { setSubmitting, setErrors, setStatus }){
+      mutate(values, {
+        onSuccess: (data) => {
+          setSubmitting(false);
+        },
+        onError: async (err) => {
+          if (err?.code === 400 && err?.info) {
+            const fieldErrors = Object.fromEntries(
+              Object.entries(err.info).map(([key, value]) => [key, value[0]])
+            );
+            setErrors(fieldErrors); 
+          }else{setStatus(err.message)
+          }
+          setSubmitting(false);
+        },
+      });
+    }
+    return {
+      handleSubmit,
+      isPending,
+      isError,
+      error,
+    }
 }
