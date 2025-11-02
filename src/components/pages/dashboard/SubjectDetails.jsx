@@ -14,6 +14,7 @@ import classes from "./SubjectDetails.module.css"
 import RoundBlueButton from "../../common/RoundBlueButton";
 import { useModalUtil } from "../../../utils/utilsHooks";
 import ConfirmDeleteModal from "../../common/ConfirmDeleteModal";
+import EmptyState from "../../common/EmptyState";
 
 
 
@@ -69,6 +70,9 @@ export default function SubjectDetails(){
             <td><NavLink to={`/dashboard/courses/${course.id}/${course.first_section_id}`} class="view-course-link">View Course</NavLink></td>
           </tr>))}
      </Table>
+     {courses?.length === 0 && <EmptyState path='/dashboard/courses/create' label="Add Course"
+         icon="🎓"  message="You haven’t added any courses yet."
+         subtext="Start building your learning path by creating your first course."/>}
  <Pagination pagesNbr={3}/>
     </Section>
     <Section title="Documents" icon="folder">
@@ -96,6 +100,9 @@ export default function SubjectDetails(){
                 <td><button className={documentClasses.deleteBtn}><FaTrash/></button></td>
               </tr>))}
          </Table>
+         {documents?.length === 0 && <EmptyState path='/dashboard/documents/' label="Add Document"
+                  icon="🗂️"  message="You haven’t uploaded any documents yet."
+                  subtext="Drag and drop your first file to get started."/>}
     
      <Pagination pagesNbr={2}></Pagination>   
      <ConfirmDeleteModal isOpen={isModalOpen} onClose={closeModal} onConfirm={deleteSubject} />         
