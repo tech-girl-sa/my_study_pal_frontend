@@ -6,6 +6,7 @@ import Pagination from "../../common/Pagination.jsx";
 import { useGetCourses, useGetCoursesTags, useGetSubjectChoices } from "../../../utils/hooks.js";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import EmptyState from "../../common/EmptyState.jsx";
 
 
 
@@ -30,6 +31,7 @@ const {data:tags} = useGetCoursesTags()
     return <>
     <div className={classes.Page}>
     <PageHeader title="All Courses" subtitle="Explore all the courses in your study space."/>
+    
    <Filters tags={tags} placeholder="Search courses..." 
    filterChoices={filterChoices} 
    buttonText="Create New Course"  path="/dashboard/courses/create/"
@@ -52,6 +54,9 @@ const {data:tags} = useGetCoursesTags()
             <td><NavLink to={`/dashboard/courses/${course.id}/${course.first_section_id}`} class="view-course-link">View Course</NavLink></td>
           </tr>))}
      </Table>
+     {courses?.length === 0 && <EmptyState path='/dashboard/courses/create' label="Add Course"
+    icon="🎓"  message="You haven’t added any courses yet."
+    subtext="Start building your learning path by creating your first course."/>}
  <Pagination pagesNbr={3}/>
   </>
 }

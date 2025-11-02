@@ -7,7 +7,7 @@ import Select from "../../common/Select";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import classes from "./CreateSubject.module.css";
-import { useGetAiModelChoices, useGetCourse,  useGetLanguageChoices,  useGetSettings,  useSetCourse, useSetSettings } from "../../../utils/hooks";
+import { useGetAiModelChoices,  useGetLanguageChoices,  useGetSettings, useSetSettings } from "../../../utils/hooks";
 import create_settings from "../../../assets/create_course.png";
 
 const initialValues = {

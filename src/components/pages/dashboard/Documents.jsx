@@ -10,6 +10,7 @@ import classes from "./Documents.module.css";
 import { FaTrash } from "react-icons/fa";
 import ConfirmDeleteModal from "../../common/ConfirmDeleteModal.jsx";
 import { useModalUtil } from "../../../utils/utilsHooks.js";
+import EmptyState from "../../common/EmptyState.jsx";
 
 
 export default function Documents(){
@@ -36,7 +37,8 @@ export default function Documents(){
         ordering:"",
         filters:{}
       })
-    const {data:documents}= useGetDocuments(filters)
+    let {data:documents}= useGetDocuments(filters)
+    documents=[]
    
 
     return <>
@@ -74,6 +76,9 @@ export default function Documents(){
             <td><button className={classes.deleteBtn} onClick={openModal} id={document?.id}><FaTrash/></button></td>
           </tr>))}
      </Table>
+     {documents?.length === 0 && <EmptyState path='/dashboard/documents/' label="Add Document"
+         icon="🗂️"  message="You haven’t uploaded any documents yet."
+         subtext="Drag and drop your first file to get started."/>}
 
  <Pagination pagesNbr={2}></Pagination>
  </Section>

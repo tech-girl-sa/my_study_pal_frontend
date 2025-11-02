@@ -5,6 +5,7 @@ import Section from "../../common/Section";
 import Table from '../../common/Table';
 import { useGetCourses, useGetSubjects } from '../../../utils/hooks';
 import { NavLink } from 'react-router-dom';
+import EmptyState from '../../common/EmptyState';
 
 
 
@@ -19,6 +20,9 @@ export default function DashboardHome(){
   <div className={classes.cardContainer}>
     {subjects?.map(subject=><SubjectCard subject={subject} key={subject.id}/>)}
     </div>
+     {subjects?.length === 0 && <EmptyState path='/dashboard/subjects/create' label="Add Subject"
+          icon="📚"  message="No subjects yet!"
+          subtext="Start by adding your first subject to organize your learning journey. "/>}
   </Section >
   
   <Section title="Recent Courses" icon="copy"  url="/dashboard/courses" >
@@ -30,6 +34,9 @@ export default function DashboardHome(){
           <td><NavLink to={`/dashboard/courses/${course.id}/${course.first_section_id}`} class="view-course-link">View Course</NavLink></td>
         </tr>))}
    </Table>
+   {courses?.length === 0 && <EmptyState
+       icon="🎓"  message="You haven’t added any courses yet."
+       subtext="Start building your learning path by creating your first course."/>}
   </Section>
   </>
 }
