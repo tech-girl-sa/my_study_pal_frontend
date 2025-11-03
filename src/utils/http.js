@@ -377,3 +377,11 @@ export async function setSetting(settingsData) {
     const userInfo = await instanceMappingWrapper(url, instanceName, keyMappings, settingsData, "POST")
     return userInfo
 }
+
+
+export async function getUserInfo() {
+    const instanceName = 'UserInfo'
+    const url = `http://localhost:8000/api/user_info/`
+    const info = await getData(url, instanceName)
+    return info
+}

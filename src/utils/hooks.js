@@ -4,6 +4,7 @@ import { createNewRegistration, deleteCourseApi, deleteDocumentApi, deleteSectio
    getDocuments, getLanguageChoices, getMessages, getSection, getSections, 
    getSettings, 
    getSubject, getSubjectChoices, getSubjects, getSubjectTags, 
+   getUserInfo, 
    sendLoginRequest, setCourse, setSection, setSetting, setSubject, setUserInfo, setUserMessage } from "./http";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { setAuthToken } from "./authentication";
@@ -68,12 +69,12 @@ export function useSetUserInfo(url){
           },
         });
       }
-      return [
+      return {
         handleSubmit,
         isPending,
         isError,
         error,
-      ]
+      }
 }
 
 export function usegetUserMessages(){
@@ -637,5 +638,20 @@ export function useSetSettings(url){
       isPending,
       isError,
       error,
+    }
+}
+
+export function useGetUserProfile(){
+  const {data, isLoading, error} = useQuery({
+    queryKey: ["userProfile"],
+    queryFn: getUserInfo,
+    refetchOnMount: "always",
+    staleTime: 0,
+  })
+
+    return {
+      data,
+      isLoading,
+      error
     }
 }

@@ -30,6 +30,7 @@ import CreateSection from './components/pages/dashboard/CreateSection'
 import SectionUpdate from './components/pages/dashboard/SectionUpdate'
 import Quizzes from './components/pages/dashboard/quizzes'
 import Settings from './components/pages/dashboard/Settings'
+import UserProfile from './components/pages/dashboard/UserProfile'
 
 
 const study_pal_router = createBrowserRouter(
@@ -68,6 +69,7 @@ const study_pal_router = createBrowserRouter(
             {path: "documents", element:<Documents/>},
             {path: "quizzes", element:<Quizzes/>},
             {path: "settings", element:<Settings/>},
+            {path: "userProfile", element:<UserProfile/>},
           ]
         },
         

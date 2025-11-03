@@ -20,7 +20,7 @@ const validationSchema=Yup.object({
 })
 
 export default function OnboardingStep1(){
-  const [handleSubmit] = useSetUserInfo('/onboarding/step2')
+  const {handleSubmit} = useSetUserInfo('/onboarding/step2')
 
     return (
   
