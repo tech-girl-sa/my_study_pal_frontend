@@ -5,7 +5,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-import { action as logoutAction } from './utils/authentication'
+import { checkLoginLoader, action as logoutAction } from './utils/authentication'
 import RootLayout from './components/pages/RootLayout'
 import ErrorPage from './components/pages/errors/ErrorPage'
 import OnboardingLayout from './components/pages/onboarding/OnboardingLayout'
@@ -45,6 +45,7 @@ const study_pal_router = createBrowserRouter(
         {path: "login", element:<Login/>},
         {path: "onboarding", 
           element:<OnboardingLayout/>,
+          loader: checkLoginLoader,
           children:[
             {path: "step1", element:<OnboardingStep1/>},
             {path: "step2", element:<OnboardingStep2/>},
@@ -54,6 +55,7 @@ const study_pal_router = createBrowserRouter(
         },
         {path: "dashboard", 
           element:<DashboardLayout/>,
+          loader: checkLoginLoader,
           children:[
             {index:true, element:<DashboardHome/>},
             {path: "subjects", element:<Subjects/>},

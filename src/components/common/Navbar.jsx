@@ -3,21 +3,23 @@ import logo from '../../assets/logo.png';
 import { FaBell, FaUserCircle } from "react-icons/fa";
 import { useState } from 'react';
 import {  FaRightFromBracket, FaUser } from "react-icons/fa6";
-import { NavLink } from 'react-router-dom';
+import { useSubmit, useNavigate } from 'react-router-dom';
 
 
 
 export default function Navbar(){
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const submit = useSubmit();
 
   const handleProfile = () => {
     setOpen(false);
-    navigate("/dashboard/profile");
+    navigate("/dashboard/userProfile");
   };
 
   const handleLogout = () => {
     setOpen(false);
-    navigate("/logout");
+    submit(null, { method: "post", action: "/logout" });
   };
 
     return <>
@@ -32,11 +34,13 @@ export default function Navbar(){
   </div>
   {open && (
         <div className={classes.userDropdown}>
-          <button className={classes.dropdownItem}>
+          <button className={classes.dropdownItem}
+          onClick={handleProfile}>
             <FaUser /> Profile
           </button>
-          <button className={classes.dropdownItem}>
-            <FaRightFromBracket /><NavLink to="/logout/">Logout</NavLink> 
+          <button className={classes.dropdownItem}
+          onClick={handleLogout}>
+            <FaRightFromBracket />Logout
           </button>
         </div>
       )}

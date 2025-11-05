@@ -10,14 +10,16 @@ export function setAuthToken(token){
 }
 
 export function action(){
+    console.log("logout")
     localStorage.removeItem('authKey');
-    redirect('/')
+    return redirect('/home/')
 }
 
 export function checkLoginLoader(){
     const authKey = getAuthToken()
     
     if (!authKey){
-        redirect('/login')
+        return redirect('/login')
     }
+    return null
 }
