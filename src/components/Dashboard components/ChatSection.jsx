@@ -30,7 +30,6 @@ export default function ChatSection({document_id}){
 
     <div className={classes.chatMeta}>
       {document && <span><FaFileAlt/> <a href={document.file}>{document.title}</a></span>}
-      <span><FaPenSquare/> <a href="#">Derivatives Quiz</a></span>
     </div>
 
     <div className={classes.chatActions}>
