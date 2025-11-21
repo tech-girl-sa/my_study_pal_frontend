@@ -107,14 +107,18 @@ export async function setUserInfo(userInfoData) {
     return userInfo
 }
 
-export async function uploadDocument(file) {
+export async function uploadDocument(file, courseId='') {
     const headers = {}
     
     headers['Authorization']= `Token ${getAuthToken()}`;
     
     const formData = new FormData();
     formData.append("file", file);
-    const response = await fetch(`http://localhost:8000/api/documents/`, {
+    let url=`http://localhost:8000/api/documents/`
+    if (courseId){
+        url=`http://localhost:8000/api/documents/?course=${courseId}`
+    }
+    const response = await fetch(url, {
         method: "POST",
         body: formData,
         headers: headers,

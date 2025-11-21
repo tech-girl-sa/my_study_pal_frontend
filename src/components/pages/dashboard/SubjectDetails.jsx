@@ -44,7 +44,7 @@ export default function SubjectDetails(){
     <PageHeader title={subject?.title} subtitle={subject?.description}/>
     <div className={classes.actionButtons}>
             <RoundBlueButton><FaPen /> 
-            <NavLink to={`/dashboard/subjects/${subjectId}/`}>Edit Subject</NavLink>
+            <NavLink to={`/dashboard/subjects/${subjectId}/update/`}>Edit Subject</NavLink>
             </RoundBlueButton>
             <RoundBlueButton className={classes.archiveBtn} onClick={openModal} id={subject?.id}><FaTrash/> Delete Subject</RoundBlueButton>
             </div>
