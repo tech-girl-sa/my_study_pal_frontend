@@ -18,7 +18,7 @@ export default function DashboardHome(){
     <ChatWidgetSection/>
     <Section title="Recent Subjects" icon="book" url="/dashboard/subjects">
   <div className={classes.cardContainer}>
-    {subjects?.map(subject=><SubjectCard subject={subject} key={subject.id}/>)}
+    {subjects?.slice(0, 4).map(subject=><SubjectCard subject={subject} key={subject.id}/>)}
     </div>
      {subjects?.length === 0 && <EmptyState path='/dashboard/subjects/create' label="Add Subject"
           icon="📚"  message="No subjects yet!"
@@ -28,7 +28,7 @@ export default function DashboardHome(){
   <Section title="Recent Courses" icon="copy"  url="/dashboard/courses" >
  
  <Table headers={["Course Title", "Subject", "View Course"]}>
-        {courses?.map(course=> (<tr id={course.id}>
+        {courses?.slice(0, 4).map(course=> (<tr id={course.id}>
           <td  className={classes.courseTitle}><a href="#">{course.title}</a></td>
           <td>{course.subject_title}</td>
           <td><NavLink to={`/dashboard/courses/${course.id}/${course.first_section_id}`} class="view-course-link">View Course</NavLink></td>
