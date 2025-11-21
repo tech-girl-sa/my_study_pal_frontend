@@ -38,7 +38,6 @@ export default function Documents(){
         filters:{}
       })
     let {data:documents}= useGetDocuments(filters)
-    documents=[]
    
 
     return <>
