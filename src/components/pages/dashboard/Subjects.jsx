@@ -24,7 +24,7 @@ export default function Subjects(){
    <Filters tags={tags} placeholder="Search subjects..." 
    filterChoices={filterChoices} 
    buttonText="Create New Subject"
-    path="/dashboard/courses/create/"
+    path="/dashboard/subjects/create/"
    setFilters={setFilters}
    filters={filters}
 
