@@ -42,3 +42,24 @@
   .uploadWidget p.rejected{
     color: #d9534f;
   }
+  .dropdownMessage {
+    margin-top: 8px;
+    padding: 10px 15px;
+    background-color: #f5f7fa; /* light neutral background */
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #1c2b38; /* dark text */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .dropdownMessage a {
+    color: #2a93d5; /* accent blue like links in Study Pal */
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .dropdownMessage a:hover {
+    text-decoration: underline;
+  }

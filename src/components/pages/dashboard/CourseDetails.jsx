@@ -30,7 +30,7 @@ export default function CourseDetails(){
         </div>
         <div className={classes.courseActions}>
         <RoundBlueButton><FaPen /><NavLink to={`/dashboard/courses/${course?.id}/${section?.id}/update`}> Edit Section </NavLink></RoundBlueButton>
-        <RoundBlueButton><FaUpload /> Upload Document</RoundBlueButton>
+        <RoundBlueButton><FaUpload /><NavLink to={`/dashboard/documents/?courseId=${course?.id}`}> Upload Document</NavLink></RoundBlueButton>
         <RoundBlueButton className={classes.archiveBtn} id={section?.id} onClick={openModal}><FaTrash/> Delete Section</RoundBlueButton>
         <RoundBlueButton><FaPlus /> Create Quiz</RoundBlueButton>
         </div>
